@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="25px" height="22px" viewBox="0 0 25 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="I" transform="translate(-339.000000, -59.000000)" stroke="#000000" stroke-width="1.5">
+            <g id="Top-Section">
+                <g id="Direct" transform="translate(354.660254, 65.392305) rotate(-300.000000) translate(-354.660254, -65.392305) translate(342.660254, 55.392305)">
+                    <polygon id="Path-2" points="11.6374173 0 1.13686838e-13 19.8520648 11.6374173 15.0481915"></polygon>
+                    <polygon id="Path-2" transform="translate(17.456126, 9.926032) scale(-1, 1) translate(-17.456126, -9.926032) " points="23.2748346 0 11.6374173 19.8520648 23.2748346 15.0481915"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

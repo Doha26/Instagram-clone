@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="21px" viewBox="0 0 24 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    direct.svg
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Instagram-UI-2018---iPhone-X" transform="translate(-10.000000, -55.000000)" stroke="#000000" stroke-width="1.5">
+            <g id="Top-Section">
+                <g id="Camera" transform="translate(10.000000, 55.000000)">
+                    <path d="M13.7450856,0.75 L10.2686287,0.75 C9.40124119,0.75 8.23591097,1.36635199 7.74840145,2.08003759 L6.60678882,3.75 L3.99005301,3.75 C2.19949768,3.75 0.75,5.20174749 0.75,6.9947834 L0.75,17.0052166 C0.75,18.7954638 2.20201282,20.25 3.99005301,20.25 L20.009947,20.25 C21.8005023,20.25 23.25,18.7982525 23.25,17.0052166 L23.25,6.9947834 C23.25,5.20453615 21.7979872,3.75 20.009947,3.75 L17.379356,3.75 L17.1563422,3.41957311 L16.2483228,2.07421193 C15.7742859,1.37215911 14.6016558,0.75 13.7450856,0.75 Z" id="Combined-Shape"></path>
+                    <circle id="Oval-2" cx="12" cy="12" r="5.25"></circle>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
