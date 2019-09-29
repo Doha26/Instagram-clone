@@ -6,7 +6,7 @@ import SvgUri from "react-native-svg-uri";
 
 const HeaderToolbar : React.StatelessComponent = () =>{
     return (
-        <View style={Object.assign({}, styles.paddingContainer, styles.logoContainer)}>
+        <View style={Object.assign({}, styles.logoContainer)}>
             <View style={styles.itemsCamContainer}>
                 <TouchableOpacity>
                     <SvgUri width="32" height="28" source={require('../../assets/svg/camera.svg')}/>
@@ -26,29 +26,22 @@ const HeaderToolbar : React.StatelessComponent = () =>{
     );
 };
 const styles = StyleSheet.create({
-    paddingContainer: {
-        flexDirection: 'column',
-        paddingLeft: 20,
-        paddingRight: 20,
-        paddingTop:10
-    },
     logoContainer: {
         flex: 10,
-        marginTop:10,
+        position:'absolute',
         flexDirection: 'row',
-        height:160,
+        top:45,
+        left:20,
+        right:20
     },
     itemsCamContainer: {
         flex: 3,
-        justifyContent: 'center'
     },
     itemTextContainer: {
         flex: 3,
-        justifyContent: 'center'
     },
     itemLiveContainer: {
         flex:4,
-        backgroundColor:colors.darkBlue,
         flexDirection: 'row',
         marginTop: 5,
         justifyContent:'flex-end'

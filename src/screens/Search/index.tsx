@@ -2,18 +2,18 @@ import React from 'react';
 import {
     StyleSheet,
     View,
-    Text, StatusBar
+    Text, StatusBar, TextInput
 } from "react-native";
 import {SafeAreaView} from "react-navigation";
-
 export default class Search extends React.Component {
+
 
     render() {
         return (
             <View>
                 <StatusBar barStyle="dark-content"/>
                 <SafeAreaView></SafeAreaView>
-                <Text>Search</Text>
+
             </View>
         );
     }
