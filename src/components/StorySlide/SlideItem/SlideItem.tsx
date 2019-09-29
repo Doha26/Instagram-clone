@@ -1,7 +1,8 @@
 // @flow
 import React, { Fragment, PureComponent } from "react";
-import {View, Image, Dimensions , StyleSheet} from "react-native";
-import Avatar from "../avatar/Avatar";
+import {View, Image, Dimensions, StyleSheet, SafeAreaView} from "react-native";
+import SlideHeader from "../SlideHearder/SlideHeader";
+import ProgressBarAnimated from 'react-native-progress-bar-animated';
 
 export default class SlideItem extends PureComponent {
   render() {
@@ -15,7 +16,7 @@ export default class SlideItem extends PureComponent {
             style={styles.image}
             source={{uri:source}}
           />
-          <Avatar {...{ user, source }} />
+          <SlideHeader {...{ user, source }} />
         </View>
         {footerComponent && (
           <View style={styles.footer}>{footerComponent}</View>
