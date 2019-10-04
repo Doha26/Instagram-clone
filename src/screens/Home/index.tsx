@@ -10,6 +10,7 @@ import Separator from "../../components/separator";
 import Modal from "react-native-modalbox";
 import stories from "../../utils/stories";
 import StoriesData from '../../components/StorySlide/StoriesData/StoriesData'
+import PostItems from "../../components/PostItems";
 
 export default class Home extends React.Component {
 
@@ -81,10 +82,10 @@ export default class Home extends React.Component {
                     contentInsetAdjustmentBehavior="automatic"
                     style={styles.scrollView}>
                     <View>
-
                         <View style={Object.assign({}, styles.marginContainer, styles.storiesContainer)}>
                             <StoryItems onClicked={this._handleStoryItemPress}/>
                         </View>
+                        <PostItems/>
                     </View>
                 </ScrollView>
                 <Modal

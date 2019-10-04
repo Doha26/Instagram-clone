@@ -9,7 +9,7 @@ const HeaderToolbar : React.StatelessComponent = () =>{
         <View style={Object.assign({}, styles.logoContainer)}>
             <View style={styles.itemsCamContainer}>
                 <TouchableOpacity>
-                    <SvgUri width="32" height="28" source={require('../../assets/svg/camera.svg')}/>
+                    <Image style={{width:32, height:28}} source={require('../../assets/images/camera.png')}/>
                 </TouchableOpacity>
             </View>
             <View style={styles.itemTextContainer}>
@@ -19,7 +19,10 @@ const HeaderToolbar : React.StatelessComponent = () =>{
             </View>
             <View style={Object.assign({}, styles.itemLiveContainer)}>
                 <TouchableOpacity>
-                    <Image  style={{width:32, height:29}}  source={require('../../assets/images/direct.png')}/>
+                    <Image  style={{width:44, height:44}}  source={require('../../assets/images/tv.png')}/>
+                </TouchableOpacity>
+                <TouchableOpacity style={{flexDirection:'row' ,alignSelf:'center' ,marginTop:5}}>
+                    <Image  style={{width:26, height:26}}  source={require('../../assets/images/direct.png')}/>
                 </TouchableOpacity>
             </View>
         </View>
@@ -35,16 +38,14 @@ const styles = StyleSheet.create({
         right:20
     },
     itemsCamContainer: {
-        flex: 3,
+        flex: 2,
     },
     itemTextContainer: {
-        flex: 3,
+        flex: 4,
     },
     itemLiveContainer: {
-        flex:4,
-        flexDirection: 'row',
-        marginTop: 5,
-        justifyContent:'flex-end'
+        flex:1.4,
+        flexDirection: 'row'
     }
 });
 export default HeaderToolbar;

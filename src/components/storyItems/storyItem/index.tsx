@@ -18,10 +18,12 @@ const StoryItem: React.StatelessComponent = (props:any) => {
                     <View style={styles.btnPlusBg}>
                         <SvgUri  style={styles.btnPlus} source={require('../../../assets/svg/plus.svg')}/>
                     </View>
+
                 </View>
+                <Text style={styles.profileName}>Your story</Text>
             </TouchableOpacity>
             :
-            <View style={{justifyContent:'center', alignItems:'center'}}>
+            <View style={{alignItems:'center', justifyContent:'center'}}>
                 <LinearGradient
                     colors={[colors.turkois,colors.extraLightRed, colors.orangeLight]}
                     style={{ height: 76, width: 76, alignItems: 'center', justifyContent: 'center', borderRadius:38 , marginLeft:15}}
@@ -32,20 +34,22 @@ const StoryItem: React.StatelessComponent = (props:any) => {
                                     containerStyle={styles.avatar}
                                     source={props.image}
                             />
-
                         </View>
-
                     </TouchableOpacity>
                 </LinearGradient>
                 {
-                    props.isLive ? <LinearGradient
-                        colors={[colors.turkois,colors.extraLightRed, colors.orangeLight]}
-                        style={styles.btnLive}
-                    >
-                        <Text style={styles.textLive}>LIVE</Text>
-                    </LinearGradient>: null
-                }
+                    props.isLive ? <View style={{justifyContent:'center', marginLeft:15,alignItems:'center',flexDirection:'column'}}>
+                            <LinearGradient
+                                colors={[colors.turkois,colors.extraLightRed, colors.orangeLight]}
+                                style={styles.btnLive}
+                            >
+                                <Text style={styles.textLive}>LIVE</Text>
+                            </LinearGradient>
 
+                        </View>
+                        : null
+                }
+                <Text style={styles.profileName}>{props.name}</Text>
             </View>
 
     );
@@ -61,6 +65,13 @@ const styles = StyleSheet.create({
         backgroundColor:colors.white,
         justifyContent: 'center',
         alignItems: 'center'
+    },
+    profileName:{
+      marginTop:5,
+      color: colors.black,
+      fontWeight: "300",
+        fontSize: 13,
+        marginLeft:10
     },
     containerProfile: {
         height: 76,
@@ -117,8 +128,9 @@ const styles = StyleSheet.create({
         padding:4,
         bottom: 0,
         margin:'auto',
-        left:34,
-        marginTop:50
+        top:-16,
+        marginLeft:30
+
     },
     textLive:{
         color:colors.white,
