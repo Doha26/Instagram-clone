@@ -3,13 +3,18 @@ import {
     TouchableOpacity, View,
     StyleSheet,
     Text,
-    Image
+    Image, Dimensions
 } from "react-native";
 import {colors} from "../../../utils/theme";
 import SvgUri from "react-native-svg-uri";
 import {Avatar} from "react-native-elements";
 import ViewMoreText from 'react-native-view-more-text';
+// @ts-ignore
+import Video from 'react-native-video';
 import LinearGradient from "react-native-linear-gradient";
+import {generateHiperlinkText} from "../../../utils/methods";
+import CommentItem from "../../commentItem";
+import AvatarInput from "../../avatarInput";
 
 interface IPostItemProps {
     avatar: String,
@@ -19,6 +24,7 @@ interface IPostItemProps {
     likeCount: String,
     commentCount: String,
     shareCount: String,
+    videoUrl: string,
 
     text: String,
 
@@ -28,29 +34,45 @@ interface IPostItemProps {
 }
 
 class PostItem extends React.Component<IPostItemProps> {
+    private player: any;
+
 
     constructor(props: IPostItemProps) {
         super(props);
     }
 
+    onBuffer = () => {
+
+    };
+    onError = () => {
+        alert("Unable to load video");
+    };
+
     render() {
-        const {avatar, author, time, image, likeCount, commentCount, shareCount, text,isImage, isVideo, isText} = this.props;
+        const {avatar, author, time, image, likeCount, commentCount, shareCount, text, isImage, isVideo, isText , videoUrl} = this.props;
         return (
             <View style={styles.container}>
                 <View style={styles.cardHeader}>
 
-                    <View style={{alignItems:'center', justifyContent:'center'}}>
+                    <View style={{alignItems: 'center', justifyContent: 'center'}}>
                         <LinearGradient
-                            colors={[colors.turkois,colors.extraLightRed, colors.orangeLight]}
-                            style={{ height: 50, width: 50, alignItems: 'center', justifyContent: 'center', borderRadius:25 , marginLeft:1}}
+                            colors={[colors.turkois, colors.extraLightRed, colors.orangeLight]}
+                            style={{
+                                height: 50,
+                                width: 50,
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                borderRadius: 25,
+                                marginLeft: 1
+                            }}
                         >
                             <TouchableOpacity>
-                                <View style={styles.containerProfilePhoto} >
+                                <View style={styles.containerProfilePhoto}>
                                     <Avatar
-                                            containerStyle={styles.avatar}
-                                            rounded
-                                            size={"medium"}
-                                            source={avatar}
+                                        containerStyle={styles.avatar}
+                                        rounded
+                                        size={"medium"}
+                                        source={avatar}
                                     />
                                 </View>
                             </TouchableOpacity>
@@ -65,41 +87,30 @@ class PostItem extends React.Component<IPostItemProps> {
                 </View>
                 <View style={{paddingLeft: isText ? 20 : 0}}>
                     {isImage ?
-                        <Image source={image}/> : null}
+                        <Image source={image} style={{height:270}}/> : null}
                     {isVideo ?
-                        <TouchableOpacity
-                            style={{position: 'absolute', top: 70, alignSelf: 'center', justifyContent: 'center'}}>
-                            <SvgUri width="80"
-                                    height="80"
-                                    source={require('../../../assets/svg/play_video.svg')}
-                            />
-                        </TouchableOpacity>
+                        <Video source={{uri: videoUrl}}   // Can be a URL or a local file.
+                               ref={(ref: any) => {
+                                   this.player = ref
+                               }}
+                                paused={true}
+                                controls={true}
+                               onBuffer={this.onBuffer}                // Callback when remote video is buffering
+                               onError={this.onError}               // Callback when video cannot be loaded
+                               style={{width:Dimensions.get('window').width, height:270}}/>
                         : null}
-
-                    {isText ?
-                        <ViewMoreText
-                            numberOfLines={5}
-                            renderViewMore={this.renderViewMore}
-                            renderViewLess={this.renderViewLess}
-                            textStyle={{textAlign: 'justify', marginRight: 20 , lineHeight:25 , fontSize:15}}>
-                            <Text>
-                                {text}
-                            </Text>
-                        </ViewMoreText>
-                    :null}
-
                 </View>
                 <View style={styles.cardActionContainer}>
                     <TouchableOpacity>
                         <Image style={{width: 26, height: 26}}
                                source={require('../../../assets/images/heart_red.png')}/>
                     </TouchableOpacity>
-                    <TouchableOpacity style={{marginLeft:16}}>
+                    <TouchableOpacity style={{marginLeft: 16}}>
                         <Image style={{width: 26, height: 26}}
                                source={require('../../../assets/images/comment.png')}/>
                     </TouchableOpacity>
-                    <TouchableOpacity style={{marginLeft:16}}>
-                        <Image style={{width: 32, height: 26}}
+                    <TouchableOpacity style={{marginLeft: 16, marginTop: 2}}>
+                        <Image style={{width: 26, height: 26}}
                                source={require('../../../assets/images/direct.png')}/>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.flexEndAligned}>
@@ -109,12 +120,24 @@ class PostItem extends React.Component<IPostItemProps> {
 
                 </View>
                 <View style={styles.cardStatsCounter}>
-                    <View style={Object.assign({}, styles.flexStartAligned, {flex: 7})}>
+                    <View style={Object.assign({})}>
                         <Text style={styles.likeCounter}>{likeCount}</Text>
-                        <Text style={styles.commentCounter}>{commentCount}</Text>
-                    </View>
-                    <View style={{alignSelf: 'flex-end', flex: 2}}>
-                        <Text style={styles.commentCounter}>{shareCount}</Text>
+                        {
+                            generateHiperlinkText(
+                                <Text
+                                    style={styles.viewMoreText}
+                                    numberOfLines={2}>
+                                    @Ivana_ivanka 😜🙌🔥, #party🔥🔥, #people,#artist,#friendzone; #blackistbeautiful,
+                                    #ogclub
+                                </Text>
+                            )
+                        }
+                        <TouchableOpacity>
+                            <Text style={styles.viewMoreBtn}> View {`${commentCount} comments`}</Text>
+                        </TouchableOpacity>
+                        <CommentItem author="setoo9" message="❤️❤️❤️ Awesome work. keep up✨"/>
+                        <AvatarInput/>
+
                     </View>
                 </View>
 
@@ -137,23 +160,22 @@ const styles = StyleSheet.create({
         height: 48,
         flexDirection: 'column',
         width: 48,
-        borderRadius:24,
-        backgroundColor:colors.white,
+        borderRadius: 24,
+        backgroundColor: colors.white,
         justifyContent: 'center',
         alignItems: 'center'
     },
     avatar: {
         height: 46,
         width: 46,
-        position:'relative',
-        backgroundColor:colors.white,
+        position: 'relative',
+        backgroundColor: colors.white,
         borderRadius: 23,
-        zIndex:100
+        zIndex: 100
     },
     flexStartAligned: {
         flex: 1,
         justifyContent: 'flex-start',
-        flexDirection: 'row',
         alignItems: 'flex-start'
     },
     flexEndAligned: {
@@ -176,17 +198,18 @@ const styles = StyleSheet.create({
     },
     cardStatsCounter: {
         flexDirection: 'row',
-        padding: 15,
-        height: 45
+        paddingLeft: 15,
+        paddingRight: 15,
+        paddingBottom: 15
     },
     cardActionContainer: {
         flexDirection: 'row',
-        padding:15
+        padding: 15
     },
     postAuthor: {
         fontSize: 14,
         marginLeft: 5,
-        fontWeight:'bold'
+        fontWeight: 'bold'
     },
     postTime: {
         fontSize: 13,
@@ -195,7 +218,7 @@ const styles = StyleSheet.create({
         color: colors.dark_gray
     },
     blueText: {
-        color: colors.filterBlue
+        color: colors.lightBlue
     },
     buttonMore: {
         alignSelf: 'flex-end',
@@ -204,21 +227,35 @@ const styles = StyleSheet.create({
         flexGrow: 1
     },
     likeCounter: {
+        fontSize: 15,
+        fontWeight: '400',
+        color: colors.black
+    },
+    viewMoreBtn: {
         fontSize: 14,
-        marginLeft: 5,
+        fontWeight: '600',
+        marginTop: 4,
         color: colors.dark_gray
     },
     commentCounter: {
         fontSize: 14,
         marginLeft: 5,
-        color: colors.dark_gray
+        marginTop: 13,
+        color: colors.black
     }
     ,
     viewMoreText: {
-        marginLeft: 10,
-        left: 10,
-        color: colors.green
-    }
+        marginRight: 20,
+        lineHeight: 20,
+        fontSize: 14,
+        marginTop: 10,
+        color: colors.black
+    }, videoView: {
+        top: 0,
+        left: 0,
+        bottom: 0,
+        right: 0,
+    },
 });
 
 export default PostItem;

@@ -11,10 +11,10 @@ const PostItems: React.StatelessComponent = (props: any) => {
             {
                 posts.map(post => (
                     <PostItem key={post.id} likeCount={`${post.likeCount} Likes`}
-                              commentCount={`${post.commentCount} Comments`} shareCount={`${post.shareCount} Shares`}
+                              commentCount={post.commentCount} shareCount={`${post.shareCount} Shares`}
                               author={post.author} time={post.time} avatar={post.avatar}
                               image={post.image} text={post.text} isImage={post.isImage} isText={post.isText}
-                              isVideo={post.isVideo}/>
+                              isVideo={post.isVideo} videoUrl={post.videoUrl}/>
                 ))
             }
         </View>

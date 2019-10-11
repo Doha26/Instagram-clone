@@ -10,7 +10,7 @@ import Separator from "../../components/separator";
 import Modal from "react-native-modalbox";
 import stories from "../../utils/stories";
 import StoriesData from '../../components/StorySlide/StoriesData/StoriesData'
-import PostItems from "../../components/PostItems";
+import PostItems from "../../components/postItems";
 
 export default class Home extends React.Component {
 
