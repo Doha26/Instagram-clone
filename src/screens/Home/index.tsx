@@ -69,12 +69,7 @@ export default class Home extends React.Component {
         return (
             <Fragment>
             <View style={styles.fragment}>
-                <StatusBar barStyle="dark-content"/>
-                <SafeAreaView></SafeAreaView>
-                <HeaderToolbar/>
-                <View style={{marginTop:46}}>
-                    <Separator />
-                </View>
+                <HeaderToolbar context="Home"/>
                 <ScrollView
                     refreshControl={
                         <RefreshControl refreshing={this.state.refreshing} onRefresh={() => this.onRefresh}/>

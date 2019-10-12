@@ -8,7 +8,6 @@ import {
 import {colors} from "../../../utils/theme";
 import SvgUri from "react-native-svg-uri";
 import {Avatar} from "react-native-elements";
-import ViewMoreText from 'react-native-view-more-text';
 // @ts-ignore
 import Video from 'react-native-video';
 import LinearGradient from "react-native-linear-gradient";
@@ -49,7 +48,7 @@ class PostItem extends React.Component<IPostItemProps> {
     };
 
     render() {
-        const {avatar, author, time, image, likeCount, commentCount, shareCount, text, isImage, isVideo, isText , videoUrl} = this.props;
+        const {avatar, author, time, image, likeCount, commentCount, shareCount, text, isImage, isVideo, isText, videoUrl} = this.props;
         return (
             <View style={styles.container}>
                 <View style={styles.cardHeader}>
@@ -87,17 +86,17 @@ class PostItem extends React.Component<IPostItemProps> {
                 </View>
                 <View style={{paddingLeft: isText ? 20 : 0}}>
                     {isImage ?
-                        <Image source={image} style={{height:270}}/> : null}
+                        <Image source={image} style={{height: 270}}/> : null}
                     {isVideo ?
                         <Video source={{uri: videoUrl}}   // Can be a URL or a local file.
                                ref={(ref: any) => {
                                    this.player = ref
                                }}
-                                paused={true}
-                                controls={true}
+                               paused={true}
+                               controls={true}
                                onBuffer={this.onBuffer}                // Callback when remote video is buffering
                                onError={this.onError}               // Callback when video cannot be loaded
-                               style={{width:Dimensions.get('window').width, height:270}}/>
+                               style={{width: Dimensions.get('window').width, height: 270}}/>
                         : null}
                 </View>
                 <View style={styles.cardActionContainer}>
@@ -135,7 +134,8 @@ class PostItem extends React.Component<IPostItemProps> {
                         <TouchableOpacity>
                             <Text style={styles.viewMoreBtn}> View {`${commentCount} comments`}</Text>
                         </TouchableOpacity>
-                        <CommentItem author="setoo9" message="❤️❤️❤️ Awesome work. keep up✨"/>
+                        <CommentItem linesType="singleLine" context="Home" NumberOfLines={1} author="setoo9"
+                                     message="❤️❤️❤️ Awesome work. keep up✨"/>
                         <AvatarInput/>
 
                     </View>
@@ -153,7 +153,6 @@ const styles = StyleSheet.create({
         borderBottomColor: colors.exlight_gray,
         backgroundColor: colors.white,
         borderTopColor: colors.exlight_gray,
-        borderBottomWidth: 1,
         borderTopWidth: 1
     },
     containerProfilePhoto: {

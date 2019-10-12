@@ -11,6 +11,7 @@
   "dependencies": {
     "@types/react-native-modalbox": "^1.4.8",
     "linkify-it": "^1.2.4",
+    "native-base": "^2.13.8",
     "react": "16.8.6",
     "react-native": "0.61.1",
     "react-native-elements": "^1.2.0",
