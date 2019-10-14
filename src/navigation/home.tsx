@@ -3,10 +3,11 @@ import {createBottomTabNavigator} from 'react-navigation-tabs';
 import {Image} from "react-native-elements";
 import Home from "../screens/Home";
 import Search from "../screens/Search";
-import Add from "../screens/Add";
 import Like from "../screens/Like";
 import Profile from "../screens/Profile";
+
 import {colors} from "../utils/theme";
+import Add from "../screens/Add";
 
 export default (createBottomTabNavigator(
     {
@@ -41,10 +42,8 @@ export default (createBottomTabNavigator(
         Profile: {
             screen: Profile,
             navigationOptions: {
-                tabBarIcon: ({tintColor}) => (
-                    <Image style={{width: 32, height: 32}}
-                           source={require('../assets/images/user.png')}/>
-                )
+                tabBarIcon: ({tintColor}) => <Image style={{width: 32, height: 32}}
+                                                    source={require('../assets/images/user.png')}/>
             }
         }
     },
@@ -53,9 +52,9 @@ export default (createBottomTabNavigator(
             showLabel: false,
             tabStyle: {
                 padding: 20
-            }
-
+            },
         },
-        initialRouteName: 'Home'
+        initialRouteName: 'Home',
+
     }
 ));

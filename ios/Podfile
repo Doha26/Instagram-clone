@@ -40,6 +40,16 @@ target 'InstagramClone' do
 
   pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
 
+  pod 'RNReanimated', :path => '../node_modules/react-native-reanimated'
+
+  pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
+  
+
+  pod 'react-native-camera', :path => '../node_modules/react-native-camera'
+
+  pod 'react-native-cameraroll', :path => '../node_modules/@react-native-community/cameraroll'
+  
+
   target 'InstagramCloneTests' do
     inherit! :search_paths
     # Pods for testing

@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* InstagramCloneTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* InstagramCloneTests.m */; };
 		07969B30871D41EFB244D333 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6617DCD4FF9F48CB84A24061 /* EvilIcons.ttf */; };

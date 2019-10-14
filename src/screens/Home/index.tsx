@@ -19,6 +19,7 @@ import Separator from "../../components/separator";
             refreshing: false,
             setRefreshing: false,
             isModalOpen: false,
+            isGalleryModalOpen: false,
             orderedStories: null,
             selectedStory: null
         };
@@ -62,7 +63,7 @@ import Separator from "../../components/separator";
 
     render() {
         // @ts-ignore
-        const {isModalOpen} = this.state;
+        const {isModalOpen , isGalleryModalOpen} = this.state;
 
         return (
             <Fragment>
