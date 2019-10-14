@@ -8,6 +8,7 @@ import StoryItems from '../../components/storyItems/index'
 import Modal from "react-native-modalbox";
 import StoriesData from '../../components/StorySlide/StoriesData/StoriesData'
 import PostItems from "../../components/postItems";
+import Separator from "../../components/separator";
 
  export default class Home extends React.Component {
 
@@ -77,6 +78,7 @@ import PostItems from "../../components/postItems";
                         <View style={Object.assign({}, styles.marginContainer, styles.storiesContainer)}>
                             <StoryItems onClicked={this._handleStoryItemPress}/>
                         </View>
+                        <Separator/>
                         <PostItems navigation={this.props.navigation}/>
                     </View>
                 </ScrollView>

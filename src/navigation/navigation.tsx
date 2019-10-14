@@ -3,6 +3,7 @@ import {createStackNavigator} from 'react-navigation-stack';
 import Home from "./home";
 import Intro from "../screens/Intro";
 import Comments from "../screens/Comments";
+import PostDetail from "../screens/Detail";
 
 
 const appStack = createStackNavigator({
@@ -22,6 +23,13 @@ const appStack = createStackNavigator({
     },
     Comments:{
         screen:Comments,
+        navigationOptions: () => ({
+            header: null,
+            headerBackTitle: null
+        })
+    },
+    PostDetail:{
+        screen:PostDetail,
         navigationOptions: () => ({
             header: null,
             headerBackTitle: null

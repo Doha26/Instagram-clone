@@ -27,6 +27,10 @@ export default class ProfileTab extends Component {
         };
     }
 
+    openDetail = () => {
+        this.props.navigation.navigate('PostDetail');
+    };
+
     segmentClicked = (index: number) => {
         this.setState({
             activeIndex: index
@@ -36,8 +40,8 @@ export default class ProfileTab extends Component {
     renderSectionOne = () => {
         return images.map((image, index) => {
             return (
-                <View  key={index} style={{width: width / 3, height: width / 3}}>
-                    <TouchableOpacity style={{flex: 1}}>
+                <View key={index} style={{width: width / 3, height: width / 3}}>
+                    <TouchableOpacity style={{flex: 1}} onPress={this.openDetail}>
                         <Image source={{url: image}} style={{flex: 1}}/>
                     </TouchableOpacity>
                 </View>
@@ -68,7 +72,7 @@ export default class ProfileTab extends Component {
     };
 
     componentWillMount() {
-       
+
     }
 
     render() {
@@ -77,7 +81,7 @@ export default class ProfileTab extends Component {
 
         return (
             <Container style={{flex: 1, backgroundColor: 'white'}}>
-                <Header style={{backgroundColor:colors.white}}>
+                <Header style={{backgroundColor: colors.white}}>
                     <Left>
                         <Button transparent onPress={this.goBack}>
                             <Icon type={"MaterialCommunityIcons"} fontSize={32} style={{color: colors.black}}
@@ -86,7 +90,7 @@ export default class ProfileTab extends Component {
                     </Left>
                     <Body>
                     <TouchableOpacity>
-                        <Text style={{fontSize:18, color:colors.black}}>Pavel</Text>
+                        <Text style={{fontSize: 18, color: colors.black, fontWeight: 'bold'}}>pavel_foujeu</Text>
                     </TouchableOpacity>
                     </Body>
                     <Right>
@@ -106,7 +110,7 @@ export default class ProfileTab extends Component {
                                     <Text style={{fontSize: 13, color: 'gray'}}>posts</Text>
                                 </View>
                                 <View style={{alignItems: 'center'}}>
-                                    <Text style={styles.countable} >5023</Text>
+                                    <Text style={styles.countable}>5023</Text>
                                     <Text style={{fontSize: 13, color: 'gray'}}>followers</Text>
                                 </View>
                                 <View style={{alignItems: 'center'}}>
@@ -140,8 +144,8 @@ export default class ProfileTab extends Component {
                         </View>
                     </View>
                     <View style={{paddingHorizontal: 10, paddingVertical: 10}}>
-                        <Text style={{fontWeight: 'bold',fontSize:15}}>Pavel Foujeu</Text>
-                        <Text style={{fontSize:15}}>Doing Fun with #Android - #Swift - #React and #React-Native.</Text>
+                        <Text style={{fontWeight: 'bold', fontSize: 15}}>Pavel Foujeu</Text>
+                        <Text style={{fontSize: 15}}>Doing Fun with #Android - #Swift - #React and #React-Native.</Text>
                         <Text style={styles.userEmail}>foujeupavel@gmail.com</Text>
                     </View>
 
@@ -183,12 +187,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    userEmail:{
-        color:colors.fullDarkBlue,
-        fontSize:15
+    userEmail: {
+        color: colors.fullDarkBlue,
+        fontSize: 15
     },
-    countable:{
-        fontWeight:'bold',
-        fontSize:15
+    countable: {
+        fontWeight: 'bold',
+        fontSize: 15
     }
 });

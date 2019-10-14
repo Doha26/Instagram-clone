@@ -11,7 +11,8 @@ const styles = StyleSheet.create({
     separator: {
         height: 1,
         width: Dimensions.get('window').width,
-        backgroundColor: '#D8D8D8'
+        backgroundColor: '#D8D8D8',
+        marginTop:10
     }
 });
 

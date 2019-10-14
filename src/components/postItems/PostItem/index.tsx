@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
         borderBottomColor: colors.exlight_gray,
         backgroundColor: colors.white,
         borderTopColor: colors.exlight_gray,
-        borderTopWidth: 1
+        borderBottomWidth: 1
     },
     containerProfilePhoto: {
         height: 48,
