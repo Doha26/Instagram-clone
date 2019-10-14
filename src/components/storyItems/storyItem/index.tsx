@@ -20,7 +20,7 @@ const StoryItem: React.StatelessComponent = (props:any) => {
                     </View>
 
                 </View>
-                <Text style={styles.profileName}>Your story</Text>
+                <Text style={styles.profileName}>{props.title}</Text>
             </TouchableOpacity>
             :
             <View style={{alignItems:'center', justifyContent:'center'}}>

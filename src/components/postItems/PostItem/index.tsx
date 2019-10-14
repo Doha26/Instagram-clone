@@ -47,6 +47,11 @@ class PostItem extends React.Component<IPostItemProps> {
         alert("Unable to load video");
     };
 
+    openComments = () => {
+        console.log(this.props);
+        this.props.navigation.navigate('Comments');
+    };
+
     render() {
         const {avatar, author, time, image, likeCount, commentCount, shareCount, text, isImage, isVideo, isText, videoUrl} = this.props;
         return (
@@ -132,7 +137,7 @@ class PostItem extends React.Component<IPostItemProps> {
                             )
                         }
                         <TouchableOpacity>
-                            <Text style={styles.viewMoreBtn}> View {`${commentCount} comments`}</Text>
+                            <Text onPress={this.openComments} style={styles.viewMoreBtn}> View {`${commentCount} comments`}</Text>
                         </TouchableOpacity>
                         <CommentItem linesType="singleLine" context="Home" NumberOfLines={1} author="setoo9"
                                      message="❤️❤️❤️ Awesome work. keep up✨"/>

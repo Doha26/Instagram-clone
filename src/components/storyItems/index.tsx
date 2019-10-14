@@ -14,7 +14,7 @@ const storyItems: React.StatelessComponent = (props: any) => {
             <View style={{flex: 1, flexDirection: 'row'}}>
                 {
                     avatars.map(avatar => (
-                        avatar.id == 0 ? <StoryItem key={avatar.id} isLive={avatar.live} isBtnProfile={true} image={avatar.src}
+                        avatar.id == 0 ? <StoryItem key={avatar.id} isLive={avatar.live} isBtnProfile={true} image={avatar.src} title="Your story"
                                                     clicked={props.onClicked}/> :
                             <StoryItem name={avatar.name} isLive={avatar.live} key={avatar.id} image={avatar.src} clicked={props.onClicked}/>
                     ))

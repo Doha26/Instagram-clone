@@ -3,8 +3,6 @@ import {
     StyleSheet,
     View, StatusBar, RefreshControl, ScrollView, TextInput, Dimensions, TouchableOpacity
 } from "react-native";
-import {SafeAreaView} from "react-navigation";
-import HeaderToolbar from '../../components/toolbar/index'
 import Separator from "../../components/separator";
 import CommentItem from "../../components/commentItem/index";
 
@@ -26,12 +24,15 @@ export default class Comments extends React.Component {
         };
     }
 
-
     onRefresh = () => {
         this.setState({setRefreshing: true});
         this.wait(2000).then(() => {
             this.setState({setRefreshing: false});
         });
+    };
+
+    goBack = () => {
+        this.props.navigation.goBack();
     };
 
     render() {
@@ -40,7 +41,7 @@ export default class Comments extends React.Component {
             <Container>
                 <Header style={{backgroundColor: colors.white}}>
                     <Left>
-                        <Button transparent>
+                        <Button transparent onPress={this.goBack}>
                             <Icon type={"MaterialCommunityIcons"} fontSize={32} style={{color: colors.black}}
                                   name='chevron-left'/>
                         </Button>
@@ -61,36 +62,52 @@ export default class Comments extends React.Component {
                         }
                         contentInsetAdjustmentBehavior="automatic"
                         style={styles.scrollView}>
-                        <View style={{paddingLeft:10, paddingRight:10, paddingTop:15, paddingBottom:15}}>
-                            <CommentItem   canReply={false} linesType="multilines" context="Comments" NumberOfLines={4} author="setoo9"
-                                          message="❤️❤️❤️ Awesome work. keep up✨❤️ Awesome work. keep up✨❤️ Awesome work. keep up✨❤️ Awesome work. keep up✨" avatar={true}/>
+                        <View style={{paddingLeft: 10, paddingRight: 10, paddingTop: 15, paddingBottom: 15}}>
+                            <CommentItem canReply={false} linesType="multilines" context="Comments" NumberOfLines={4}
+                                         author="setoo9"
+                                         message="❤️❤️❤️ Awesome work. keep up✨❤️ Awesome work. keep up✨❤️ Awesome work. keep up✨❤️ Awesome work. keep up✨"
+                                         avatar={true}/>
                         </View>
                         <Separator/>
-                        <Content padder refreshing={true}>
+                        <Content padder>
 
-                            <CommentItem   canReply={true} linesType="multilines" context="Comments" NumberOfLines={1} author="Davila Ruise"
-                                           message="❤️ I miss you honney. keep working✨" avatar={true}/>
+                            <CommentItem canReply={true} linesType="multilines" context="Comments" NumberOfLines={1}
+                                         author="Davila Ruise"
+                                         message="❤️ I miss you honney. keep working✨" avatar={true}/>
 
-                            <CommentItem   canReply={false} linesType="multilines" context="Comments" NumberOfLines={1} author="Jenny Scofield"
-                                           message="Hi sir , can you please suggest me some ressourses please :)" avatar={true}/>
+                            <CommentItem canReply={false} linesType="multilines" context="Comments" NumberOfLines={1}
+                                         author="Jenny Scofield"
+                                         message="Hi sir , can you please suggest me some ressourses please :)"
+                                         avatar={true}/>
 
-                            <CommentItem   canReply={false} linesType="multilines" context="Comments" NumberOfLines={1} author="Abela Menson"
-                                           message="Lol. Instagram is a very great app. Keep moving and learning huys" avatar={true}/>
+                            <CommentItem canReply={false} linesType="multilines" context="Comments" NumberOfLines={1}
+                                         author="Abela Menson"
+                                         message="Lol. Instagram is a very great app. Keep moving and learning huys"
+                                         avatar={true}/>
 
-                            <CommentItem   canReply={false} linesType="multilines" context="Comments" NumberOfLines={1} author="Daniel Jee"
-                                           message="Hi. I'm new here, where to start ? can i found some friends here , please ?" avatar={true}/>
+                            <CommentItem canReply={false} linesType="multilines" context="Comments" NumberOfLines={1}
+                                         author="Daniel Jee"
+                                         message="Hi. I'm new here, where to start ? can i found some friends here , please ?"
+                                         avatar={true}/>
 
-                            <CommentItem   canReply={true} linesType="multilines" context="Comments" NumberOfLines={1} author="Davila Ruise"
-                                           message="❤️ I miss you honney. keep working✨" avatar={true}/>
+                            <CommentItem canReply={true} linesType="multilines" context="Comments" NumberOfLines={1}
+                                         author="Davila Ruise"
+                                         message="❤️ I miss you honney. keep working✨" avatar={true}/>
 
-                            <CommentItem   canReply={false} linesType="multilines" context="Comments" NumberOfLines={1} author="Jenny Scofield"
-                                           message="Hi sir , can you please suggest me some ressourses please :)" avatar={true}/>
+                            <CommentItem canReply={false} linesType="multilines" context="Comments" NumberOfLines={1}
+                                         author="Jenny Scofield"
+                                         message="Hi sir , can you please suggest me some ressourses please :)"
+                                         avatar={true}/>
 
-                            <CommentItem   canReply={false} linesType="multilines" context="Comments" NumberOfLines={1} author="Abela Menson"
-                                           message="Lol. Instagram is a very great app. Keep moving and learning huys" avatar={true}/>
+                            <CommentItem canReply={false} linesType="multilines" context="Comments" NumberOfLines={1}
+                                         author="Abela Menson"
+                                         message="Lol. Instagram is a very great app. Keep moving and learning huys"
+                                         avatar={true}/>
 
-                            <CommentItem   canReply={false} linesType="multilines" context="Comments" NumberOfLines={1} author="Daniel Jee"
-                                           message="Hi. I'm new here, where to start ? can i found some friends here , please ?" avatar={true}/>
+                            <CommentItem canReply={false} linesType="multilines" context="Comments" NumberOfLines={1}
+                                         author="Daniel Jee"
+                                         message="Hi. I'm new here, where to start ? can i found some friends here , please ?"
+                                         avatar={true}/>
 
 
                         </Content>

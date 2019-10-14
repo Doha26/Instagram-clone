@@ -14,7 +14,7 @@ const PostItems: React.StatelessComponent = (props: any) => {
                               commentCount={post.commentCount} shareCount={`${post.shareCount} Shares`}
                               author={post.author} time={post.time} avatar={post.avatar}
                               image={post.image} text={post.text} isImage={post.isImage} isText={post.isText}
-                              isVideo={post.isVideo} videoUrl={post.videoUrl}/>
+                              isVideo={post.isVideo} videoUrl={post.videoUrl} navigation={props.navigation}/>
                 ))
             }
         </View>

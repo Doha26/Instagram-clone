@@ -3,16 +3,13 @@ import {
     StyleSheet,
     View, StatusBar, RefreshControl, ScrollView, TextInput, Dimensions
 } from "react-native";
-import {SafeAreaView} from "react-navigation";
 import HeaderToolbar from '../../components/toolbar/index'
 import StoryItems from '../../components/storyItems/index'
-import Separator from "../../components/separator";
 import Modal from "react-native-modalbox";
-import stories from "../../utils/stories";
 import StoriesData from '../../components/StorySlide/StoriesData/StoriesData'
 import PostItems from "../../components/postItems";
 
-export default class Home extends React.Component {
+ export default class Home extends React.Component {
 
 
     constructor(props: any) {
@@ -80,7 +77,7 @@ export default class Home extends React.Component {
                         <View style={Object.assign({}, styles.marginContainer, styles.storiesContainer)}>
                             <StoryItems onClicked={this._handleStoryItemPress}/>
                         </View>
-                        <PostItems/>
+                        <PostItems navigation={this.props.navigation}/>
                     </View>
                 </ScrollView>
                 <Modal

@@ -28,7 +28,7 @@ const appStack = createStackNavigator({
         })
     }
 },{
-    initialRouteName:'Comments'
+    initialRouteName:'Home'
 });
 
 

@@ -31,10 +31,11 @@ const CommentItem: React.StatelessComponent = (props: any) => {
                     {
                         props.likeCount > 0 ? <Text style={styles.likes}>12 Likes</Text> : null
                     }
-                    <Text style={styles.commentCounter}>Reply</Text>
+                    <TouchableOpacity>
+                        <Text style={styles.commentCounter}>Reply</Text>
+                    </TouchableOpacity>
                 </View>
             </View>
-
             {
 
                 props.context != 'Home' && props.canReply ? (
@@ -76,7 +77,9 @@ const CommentItem: React.StatelessComponent = (props: any) => {
                                 <View style={Object.assign({}, styles.flexStartAligned, {flex: 7})}>
                                     <Text style={styles.hour}>7h</Text>
                                     <Text style={styles.likes}>12 Likes</Text>
-                                    <Text style={styles.commentCounter}>Reply</Text>
+                                    <TouchableOpacity>
+                                        <Text style={styles.commentCounter}>Reply</Text>
+                                    </TouchableOpacity>
                                 </View>
                             </View>
                         </View>
