@@ -44,7 +44,7 @@ export default class GalleryView extends Component {
                         </View>
                     )}
                     renderFixedHeader={() => <Text
-                        style={{textAlign: 'center', color: 'white', padding: 15, fontSize: 20}}>Gallery</Text>}
+                        style={{textAlign: 'center', color: 'white', padding: 15, fontSize: 20}}></Text>}
                     parallaxHeaderHeight={350}
                     stickyHeaderHeight={55}
                 >

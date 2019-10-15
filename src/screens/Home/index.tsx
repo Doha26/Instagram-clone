@@ -1,7 +1,7 @@
 import React, {Fragment} from 'react';
 import {
     StyleSheet,
-    View, StatusBar, RefreshControl, ScrollView, TextInput, Dimensions
+    View, RefreshControl, ScrollView, TextInput, Dimensions
 } from "react-native";
 import HeaderToolbar from '../../components/toolbar/index'
 import StoryItems from '../../components/storyItems/index'

@@ -5,6 +5,7 @@ export const colors = {
     turkois: "#833AB4",
     lightRed: "#E1306C",
     extraLightRed: "#C13584",
+    extraLightRedFiltered: `rgba(193,53,132,0.2)`,
     orangeDark: "#F56040",
     orangeLight: "#F77737",
     yellowDark: "#FCAF45",

@@ -4,16 +4,17 @@ import {
     View,
     Text, Dimensions
 } from "react-native";
-import {Body, Button, Container, Content, Footer, Header, Left, Right, Title, FooterTab, Icon} from "native-base";
+import {Body, Button, Container, Content, Footer, Header, Left, Right} from "native-base";
 import {colors} from "../../utils/theme";
 import Modal from "react-native-modalbox";
 import {NavigationEvents} from "react-navigation";
 import Swiper from 'react-native-swiper'
 import GalleryView from "../../components/GalleryView/GalleryView";
+import CameraView from "../../components/cameraView/CameraView";
 
 
 export default class Add extends React.Component {
-
+    swiper: any;
 
     constructor(props: any) {
         super(props);
@@ -23,10 +24,34 @@ export default class Add extends React.Component {
         };
     }
 
+    componentWillReceiveProps(nextProps: any) {
+        // @ts-ignore
+        const {activeIndex} = this.state;
+        if (activeIndex > 0) {
+            this.swiper.scrollBy(activeIndex * -1); //offset
+        }
+    }
+
+    onMomentumScrollEnd(e: any, state: any, context: any) {
+        this.setState({activeIndex: state.index})
+    }
+
+
     segmentClicked = (index: number) => {
         this.setState({
             activeIndex: index
-        })
+        });
+
+        // @ts-ignore
+        const {activeIndex} = this.state;
+        if (activeIndex > 0) {
+            this.swiper.scrollBy(activeIndex * -1); //offset
+        }
+    };
+
+    closeModal = () => {
+        this.setState({isModalOpen: false});
+        this.props.navigation.navigate('Home');
     };
 
     render() {
@@ -45,17 +70,14 @@ export default class Add extends React.Component {
                 <Modal
                     style={styles.modal}
                     isOpen={isModalOpen}
-                    onClosed={() => {
-                        this.setState({isModalOpen: false});
-
-                    }}
+                    onClosed={this.closeModal}
                     position="center"
                     swipeToClose
                     swipeArea={250}
                     backButtonClose>
-                    <Header style={{backgroundColor: colors.white}}>
+                    <Header style={{backgroundColor: colors.black ,borderBottomWidth:0}}>
                         <Left>
-                            <Button transparent onPress={this.goBack}>
+                            <Button transparent  onPress={this.closeModal}>
                                 <Text style={styles.btnActions}>Cancel</Text>
                             </Button>
                         </Left>
@@ -69,38 +91,44 @@ export default class Add extends React.Component {
                         </Right>
                     </Header>
                     <Content>
-                        <Swiper style={styles.wrapper} showsButtons={false} showsPagination={false} index={0} onIndexChanged={(index:number)=>this.setState({activeIndex:index})}>
+                        <Swiper ref={component => this.swiper = component}
+                                onMomentumScrollEnd={this.onMomentumScrollEnd.bind(this)} loop={false}
+                                style={styles.wrapper} showsButtons={false} showsPagination={false} index={1}
+                                onIndexChanged={(index: number) => this.setState({activeIndex: index})}>
                             <View style={styles.slide1}>
-                             <GalleryView/>
+                                <GalleryView/>
                             </View>
                             <View style={styles.slide2}>
-                                <Text style={styles.btnActions}>Beautiful</Text>
+                                <CameraView/>
                             </View>
-                            <View style={styles.slide3}>
-                                <Text style={styles.btnActions}>And simple</Text>
+                            <View style={styles.slide2}>
+                                <CameraView/>
                             </View>
                         </Swiper>
                     </Content>
-                    <Footer style={{height:20 , backgroundColor:colors.white}}>
+                    <Footer style={{height: 20, backgroundColor: colors.black , borderTopWidth:0}}>
                         <View style={{
                             flexDirection: 'row',
                             justifyContent: 'space-around',
-                            flex:1
+                            flex: 1
                         }}>
                             <Button transparent
                                     onPress={() => this.segmentClicked(0)}
                                     active={this.state.activeIndex === 0}>
-                                <Text style={Object.assign({},styles.btnActions,{color:this.state.activeIndex === 0 ? colors.black:colors.dark_gray})}>Gallery</Text>
+                                <Text
+                                    style={Object.assign({}, styles.btnActions, {color: this.state.activeIndex === 0 ? colors.white : colors.dark_gray})}>Gallery</Text>
                             </Button>
                             <Button transparent
                                     onPress={() => this.segmentClicked(1)}
                                     active={this.state.activeIndex === 1}>
-                                <Text style={Object.assign({},styles.btnActions,{color:this.state.activeIndex === 1 ? colors.black:colors.dark_gray})}>Photo</Text>
+                                <Text
+                                    style={Object.assign({}, styles.btnActions, {color: this.state.activeIndex === 1 ? colors.white : colors.dark_gray})}>Photo</Text>
                             </Button>
                             <Button transparent
                                     onPress={() => this.segmentClicked(2)}
                                     active={this.state.activeIndex === 0}>
-                                <Text style={Object.assign({},styles.btnActions,{color:this.state.activeIndex === 2 ? colors.black:colors.dark_gray})}>Video</Text>
+                                <Text
+                                    style={Object.assign({}, styles.btnActions, {color: this.state.activeIndex === 2 ? colors.white : colors.dark_gray})}>Video</Text>
                             </Button>
                         </View>
                     </Footer>
@@ -117,7 +145,8 @@ const styles = StyleSheet.create({
     },
     btnActions: {
         fontWeight: 'bold',
-        fontSize: 17
+        fontSize: 17,
+        color:colors.white
     },
     marginContainer: {
         marginTop: 16

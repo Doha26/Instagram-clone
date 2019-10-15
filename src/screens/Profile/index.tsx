@@ -5,7 +5,6 @@ import images from '../../utils/images'
 import CardComponent from '../../components/card/CardComponent';
 import StoryItem from "../../components/storyItems/storyItem/index";
 import {colors} from "../../utils/theme";
-import {generateHiperlinkText} from "../../utils/methods";
 
 
 const {width, height} = Dimensions.get('window');

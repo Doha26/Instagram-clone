@@ -44,7 +44,7 @@ class PostItem extends React.Component<IPostItemProps> {
 
     };
     onError = () => {
-        alert("Unable to load video");
+       // alert("Unable to load video");
     };
 
     openComments = () => {

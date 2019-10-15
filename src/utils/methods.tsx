@@ -13,8 +13,7 @@ const customLinkify = require("linkify-it")()
                 );
             }
             if (self.re.twitter.test(tail)) {
-                // Linkifier allows punctuation chars before prefix,
-                // but we additionally disable `@` ("@@mention" is invalid)
+
                 if (pos >= 2 && tail[pos - 2] === "@") {
                     return false;
                 }

@@ -1,7 +1,7 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import {
     StyleSheet,
-    View, StatusBar, RefreshControl, ScrollView, TextInput, Dimensions, TouchableOpacity
+    View, RefreshControl, ScrollView, TouchableOpacity
 } from "react-native";
 import Separator from "../../components/separator";
 import CommentItem from "../../components/commentItem/index";
@@ -23,6 +23,12 @@ export default class Comments extends React.Component {
             selectedStory: null
         };
     }
+
+    wait = (timeout: number) => {
+        return new Promise(resolve => {
+            setTimeout(resolve, timeout);
+        });
+    };
 
     onRefresh = () => {
         this.setState({setRefreshing: true});
