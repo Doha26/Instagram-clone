@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, Image, Dimensions, TouchableOpacity} from 'react-native';
-import {Icon, Container, Content, Header, Left, Body, Right, Button} from 'native-base';
+import {Icon, Container, Content, Header, Left, Body, Right, Button, Spinner} from 'native-base';
 import images from '../../utils/images'
 import CardComponent from '../../components/card/CardComponent';
 import StoryItem from "../../components/storyItems/storyItem/index";
 import {colors} from "../../utils/theme";
+import Aux from "../../containers/Aux";
 
 
 const {width, height} = Dimensions.get('window');
@@ -17,6 +18,7 @@ export default class ProfileTab extends Component {
         this.state = {
             name: '',
             reputation: 0,
+            loadingData: false,
             profile: {},
             postCount: 0,
             followingCount: 0,
@@ -30,22 +32,47 @@ export default class ProfileTab extends Component {
         this.props.navigation.navigate('PostDetail');
     };
 
+    wait = (timeout: number) => {
+        return new Promise(resolve => {
+            setTimeout(resolve, timeout);
+        });
+    };
+
     segmentClicked = (index: number) => {
         this.setState({
-            activeIndex: index
-        })
+            activeIndex: index,
+            loadingData: true
+        });
+
+        this.wait(1000).then(()=>{
+            this.setState({
+                loadingData: false
+            });
+        });
     };
 
     renderSectionOne = () => {
-        return images.map((image, index) => {
-            return (
-                <View key={index} style={{width: width / 3, height: width / 3}}>
-                    <TouchableOpacity style={{flex: 1}} onPress={this.openDetail}>
-                        <Image source={{url: image}} style={{flex: 1}}/>
-                    </TouchableOpacity>
-                </View>
-            )
-        })
+
+        return (
+            <Aux>
+                <Spinner  color={colors.dark_gray} style={{
+                    marginLeft: (width / 2) - 20,
+                    marginTop:30,
+                    marginRight: 'auto',
+                    display: this.state.loadingData ? 'flex' : 'none'
+                }}/>
+                {images.map((image, index) => (
+                    <View key={index} style={{width: width / 3, height: width / 3}}>
+                        <TouchableOpacity style={{flex: 1, display: this.state.loadingData ? 'none' : 'flex'}}
+                                          onPress={this.openDetail}>
+                            <Image source={{url: image}} style={{flex: 1}}/>
+                        </TouchableOpacity>
+                    </View>
+                ))}
+            </Aux>
+
+
+        );
     };
 
     renderSectionTwo = () => {
@@ -63,8 +90,8 @@ export default class ProfileTab extends Component {
             )
         } else if (this.state.activeIndex === 1) {
             return (
-                <View>
-                    {this.renderSectionTwo()}
+                <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
+                    {this.renderSectionOne()}
                 </View>
             )
         }
@@ -160,17 +187,19 @@ export default class ProfileTab extends Component {
                             <Icon name='grid' type={"MaterialCommunityIcons"}
                                   style={[this.state.activeIndex === 0 ? {} : {color: 'grey'}]}/>
                         </Button>
+                        {/*
                         <Button transparent
                                 onPress={() => this.segmentClicked(1)}
                                 active={this.state.activeIndex === 1}>
                             <Icon name='ios-list'
                                   style={[this.state.activeIndex === 1 ? {} : {color: 'grey'}]}/>
                         </Button>
+                        */}
                         <Button transparent
-                                onPress={() => this.segmentClicked(2)}
-                                active={this.state.activeIndex === 2}>
+                                onPress={() => this.segmentClicked(1)}
+                                active={this.state.activeIndex === 1}>
                             <Icon name='clipboard-account' type={"MaterialCommunityIcons"}
-                                  style={[this.state.activeIndex === 2 ? {} : {color: 'grey'}]}/>
+                                  style={[this.state.activeIndex === 1 ? {} : {color: 'grey'}]}/>
                         </Button>
                     </View>
                     {this.renderSection()}

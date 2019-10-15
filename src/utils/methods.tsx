@@ -2,7 +2,9 @@ import React from "react";
 // @ts-ignore
 import Hyperlink from "react-native-hyperlink";
 import {colors} from "./theme";
-const customLinkify = require("linkify-it")()
+import {Text} from "native-base";
+
+const first_linkify = require("linkify-it")()
     .add("@", {
         validate: function(text:any, pos:any, self:any) {
             var tail = text.slice(pos);
@@ -48,8 +50,19 @@ const customLinkify = require("linkify-it")()
 export function generateHiperlinkText(text:any) {
     return (
         <Hyperlink
-            linkify={customLinkify}
+            linkify={first_linkify}
             linkStyle={{ color: colors.darkBlue, fontSize:14,fontWeight: "400" }}
+        >
+            {text}
+        </Hyperlink>
+    );
+}
+
+export function generateHiperlinkTextWithTime(text:any,time:string) {
+    return (
+        <Hyperlink
+            linkify={first_linkify}
+            linkStyle={{ color: colors.black, fontSize:14,fontWeight: "400" }}
         >
             {text}
         </Hyperlink>

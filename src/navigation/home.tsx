@@ -3,7 +3,7 @@ import {createBottomTabNavigator} from 'react-navigation-tabs';
 import {Image} from "react-native-elements";
 import Home from "../screens/Home";
 import Search from "../screens/Search";
-import Like from "../screens/Like";
+import Like from "../screens/Favorite";
 import Profile from "../screens/Profile";
 
 import {colors} from "../utils/theme";
