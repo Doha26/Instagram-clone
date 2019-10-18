@@ -17,6 +17,7 @@ export const colors = {
     exlight_gray: "#E1E8ED",
     exexlight_gray: "#F5F8FA",
     white: "#FFF",
+    darkRed: '#e92f3c',
     black: "#000000",
     blackFilter70: `rgba(0,0,0,0.8)`
 };

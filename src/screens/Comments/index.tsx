@@ -1,14 +1,37 @@
 import React from 'react';
 import {
     StyleSheet,
-    View, RefreshControl, ScrollView, TouchableOpacity
+    View,
+    RefreshControl,
+    ScrollView,
+    TouchableOpacity,
+    Dimensions,
+    KeyboardAvoidingViewComponent,
+    KeyboardAvoidingView,
+    TextInput
 } from "react-native";
 import Separator from "../../components/separator";
 import CommentItem from "../../components/commentItem/index";
 
-import {Button, Text, Container, Icon, Header, Body, Content, Footer, FooterTab, Left, Right, Title} from "native-base";
+import {
+    Button,
+    Text,
+    Container,
+    Icon,
+    Header,
+    Body,
+    Content,
+    Footer,
+    FooterTab,
+    Left,
+    Right,
+    Title,
+    Spinner
+} from "native-base";
 import {colors} from "../../utils/theme";
-import {Image} from "react-native-elements";
+import {Avatar, Image} from "react-native-elements";
+import Filters from "../../utils/filers";
+import AvatarInput from "../../components/avatarInput/index";
 
 export default class Comments extends React.Component {
 
@@ -18,10 +41,17 @@ export default class Comments extends React.Component {
         this.state = {
             refreshing: false,
             setRefreshing: false,
+            loading: true,
             isModalOpen: false,
             orderedStories: null,
             selectedStory: null
         };
+    }
+
+    componentDidMount(): void {
+        this.wait(2000).then(() => {
+            this.setState({loading: false});
+        });
     }
 
     wait = (timeout: number) => {
@@ -75,7 +105,13 @@ export default class Comments extends React.Component {
                                          avatar={true}/>
                         </View>
                         <Separator/>
-                        <Content padder>
+                        <Spinner color={colors.dark_gray} style={{
+                            marginLeft: (Dimensions.get("window").width / 2) - 20,
+                            marginTop: 30,
+                            marginRight: 'auto',
+                            display: this.state.loading ? 'flex' : 'none'
+                        }}/>
+                        <Content padder style={{display: this.state.loading ? 'none' : 'flex'}}>
 
                             <CommentItem canReply={true} linesType="multilines" context="Comments" NumberOfLines={1}
                                          author="Davila Ruise"
@@ -120,12 +156,77 @@ export default class Comments extends React.Component {
                     </ScrollView>
 
                 </Content>
-                <Footer>
-                    <FooterTab>
-                        <Button full>
-                            <Text>Footer</Text>
-                        </Button>
-                    </FooterTab>
+                <Footer style={{height:110 , padding:10}}>
+                    <KeyboardAvoidingView>
+                        <View style={{flex: 1}}>
+                            <ScrollView
+                                        horizontal={true}
+                                        showsHorizontalScrollIndicator={false}>
+                                <TouchableOpacity>
+                                    <Text numberOfLines={1}
+                                          style={styles.emoji}>❤️</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity>
+                                    <Text numberOfLines={1}
+                                          style={styles.emoji}>🤣</Text>
+                                </TouchableOpacity>
+
+                                <TouchableOpacity>
+                                    <Text numberOfLines={1}
+                                          style={styles.emoji}>🙌</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity>
+                                    <Text numberOfLines={1}
+                                          style={styles.emoji}>🔥</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity>
+                                    <Text numberOfLines={1}
+                                          style={styles.emoji}>🔥</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity>
+                                    <Text numberOfLines={1}
+                                          style={styles.emoji}>👏</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity>
+                                    <Text numberOfLines={1}
+                                          style={styles.emoji}>😥</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity>
+                                    <Text numberOfLines={1}
+                                          style={styles.emoji}>😍</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity>
+                                    <Text numberOfLines={1}
+                                          style={styles.emoji}>😲</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity>
+                                    <Text numberOfLines={1}
+                                          style={styles.emoji}>😎</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity>
+                                    <Text numberOfLines={1}
+                                          style={styles.emoji}>😤</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity>
+                                    <Text numberOfLines={1}
+                                          style={styles.emoji}>😈</Text>
+                                </TouchableOpacity>
+                            </ScrollView>
+                            <View style={styles.inputZone}>
+                                <TouchableOpacity style={{justifyContent:'center'}}>
+                                    <Avatar
+                                        size="large"
+                                        containerStyle={styles.avatarStyle}
+                                        rounded
+                                        source={require('../../assets/images/ic8.png')}
+                                    />
+                                </TouchableOpacity>
+                                <TextInput underlineColorAndroid='transparent' style={styles.inputStyle}
+                                           placeholder='Add a comment...' placeholderTextColor={colors.light_gray}
+                                />
+                            </View>
+                        </View>
+                    </KeyboardAvoidingView>
                 </Footer>
             </Container>
         );
@@ -140,6 +241,33 @@ const styles = StyleSheet.create({
     },
     marginContainer: {
         marginTop: 16
+    },
+    emoji: {
+        marginLeft: 10,
+        fontSize: 19
+    },
+    inputZone:{
+        flexDirection:'row',
+        flex:10,
+        justifyContent: 'center',
+        alignItems:'center'
+    },
+    avatarStyle:{
+        width:45,
+        height:45,
+        alignSelf:'center',
+        borderRadius: 22.5,
+    },
+    inputStyle:{
+        fontSize:13,
+        height:40,
+        fontWeight:"400",
+        marginLeft:10, padding:3,
+        paddingLeft:10,
+        borderWidth:1,
+        borderColor:colors.light_gray,
+        borderRadius:20,
+        flex:6
     },
     scrollView: {},
 

@@ -1,12 +1,21 @@
 import {createAppContainer, createSwitchNavigator} from 'react-navigation';
-import {createStackNavigator} from 'react-navigation-stack';
+import {createStackNavigator,} from 'react-navigation-stack';
 import Home from "./home";
+import Main from "../screens/Home";
 import Intro from "../screens/Intro";
 import Comments from "../screens/Comments";
 import PostDetail from "../screens/Detail";
-
+import Root from "../screens/Root";
 
 const appStack = createStackNavigator({
+    Root: {
+        screen: Root,
+        navigationOptions: () => ({
+            header: null,
+            headerBackTitle: null,
+        }),
+
+    },
     Splash: {
         screen: Intro,
         navigationOptions: () => ({
@@ -21,22 +30,22 @@ const appStack = createStackNavigator({
             headerBackTitle: null
         })
     },
-    Comments:{
-        screen:Comments,
+    Comments: {
+        screen: Comments,
         navigationOptions: () => ({
             header: null,
             headerBackTitle: null
         })
     },
-    PostDetail:{
-        screen:PostDetail,
+    PostDetail: {
+        screen: PostDetail,
         navigationOptions: () => ({
             header: null,
             headerBackTitle: null
         })
     }
-},{
-    initialRouteName:'Home'
+}, {
+    initialRouteName: 'Root'
 });
 
 
@@ -44,9 +53,10 @@ const appStack = createStackNavigator({
 export default createAppContainer(createSwitchNavigator(
     {
         Intro: Intro,
+        Root: Root,
         App: appStack,
     },
     {
-        initialRouteName: 'App'
+        initialRouteName: 'Intro'
     }
 ));

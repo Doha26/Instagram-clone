@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {
     View,
     StyleSheet,
-    TextInput, TouchableOpacity,
+    TextInput, TouchableOpacity, KeyboardAvoidingView,
 } from "react-native";
 import {Avatar, Text} from "react-native-elements";
 import {colors} from "../../utils/theme";
@@ -12,7 +12,7 @@ export default class AvatarInput extends Component {
     render(){
         return (
             <View style={styles.mainContainer}>
-                <View style={styles.inputZone}>
+                <KeyboardAvoidingView style={styles.inputZone}>
                     <TouchableOpacity style={{justifyContent:'center'}}>
                         <Avatar
                             containerStyle={styles.avatarStyle}
@@ -26,8 +26,7 @@ export default class AvatarInput extends Component {
                     <TouchableOpacity style={{justifyContent:'center'}}>
                         <Text style={styles.toggleEmojii}>❤️</Text>
                     </TouchableOpacity>
-
-                </View>
+                </KeyboardAvoidingView>
             </View>
         );
     }

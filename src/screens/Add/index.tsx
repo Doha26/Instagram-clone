@@ -92,8 +92,9 @@ export default class Add extends React.Component {
                     </Header>
                     <Content>
                         <Swiper ref={component => this.swiper = component}
+                                removeClippedSubviews={false}
                                 onMomentumScrollEnd={this.onMomentumScrollEnd.bind(this)} loop={false}
-                                style={styles.wrapper} showsButtons={false} showsPagination={false} index={1}
+                                style={styles.wrapper} showsButtons={false} showsPagination={false} index={0}
                                 onIndexChanged={(index: number) => this.setState({activeIndex: index})}>
                             <View style={styles.slide1}>
                                 <GalleryView/>

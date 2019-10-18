@@ -15,6 +15,7 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 const App = () => {
+  console.disableYellowBox = true
   return (
       <AppNavigator/>
   );

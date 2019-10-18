@@ -25,7 +25,11 @@ import Separator from "../../components/separator";
         };
     }
 
-    wait = (timeout: number) => {
+    componentDidMount(): void {
+        const { nav } = this.props;
+    }
+
+     wait = (timeout: number) => {
         return new Promise(resolve => {
             setTimeout(resolve, timeout);
         });

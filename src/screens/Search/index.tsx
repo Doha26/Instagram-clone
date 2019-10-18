@@ -29,7 +29,7 @@ export default class Comments extends React.Component {
         this.state = {
             refreshing: false,
             setRefreshing: false,
-            isModalOpen: true,
+            isModalOpen: false,
             orderedStories: null,
             selectedStory: null,
             tmpImages: null,
@@ -159,22 +159,17 @@ export default class Comments extends React.Component {
                     >
                         <View style={{flex:1, backgroundColor:colors.extraLightRedFiltered}}>
                             <Header rounded searchBar style={{borderRadius: 8, backgroundColor: colors.transparent,borderBottomWidth:0, paddingLeft: 8}}>
-
                                 <Left>
-                                    <Button transparent>
-                                        <TouchableOpacity onPress={this.closeModal}>
-                                            <Icon type={"AntDesign"} fontSize={32} style={{color: colors.white}}
-                                                  name='close'/>
-                                        </TouchableOpacity>
-                                    </Button>
+                                    <TouchableOpacity onPress={this.closeModal}>
+                                        <Icon type={"AntDesign"} fontSize={32} style={{color: colors.white}}
+                                              name='close'/>
+                                    </TouchableOpacity>
                                 </Left>
                                 <Right>
-                                    <Button transparent>
-                                        <TouchableOpacity>
-                                            <Icon type={"AntDesign"} fontSize={32} style={{color: colors.white}}
-                                                  name='scan1'/>
-                                        </TouchableOpacity>
-                                    </Button>
+                                    <TouchableOpacity>
+                                        <Icon type={"AntDesign"} fontSize={32} style={{color: colors.white}}
+                                              name='scan1'/>
+                                    </TouchableOpacity>
                                 </Right>
                             </Header>
                             <View style={{flex:1, justifyContent:'center' , alignItems:'center'}}>
