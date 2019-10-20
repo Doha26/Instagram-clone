@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     right: 5,
     backgroundColor: 'transparent',
   },
-})
+});
 
 ImageItem.defaultProps = {
   item: {},

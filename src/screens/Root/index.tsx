@@ -1,16 +1,21 @@
 import React from 'react';
 import {NavigationScreenProp, SafeAreaView} from 'react-navigation';
-import {View, StyleSheet, StatusBar, TouchableOpacity, Dimensions, ScrollView} from 'react-native';
+import {View, StyleSheet, StatusBar, TouchableOpacity, Dimensions, ScrollView, Image} from 'react-native';
+import VerticalSwipe from 'react-native-vertical-swipe';
 import {colors} from "../../utils/theme";
-import {Button, Image} from "react-native-elements";
+import {BlurView} from "@react-native-community/blur";
 import Swiper from "../Add";
-import {Content, Footer, Header, Icon, Left, Right, Text, Body} from "native-base";
+import {Content, Footer, Header, Icon, Left, Right, Text, Body, Container} from "native-base";
 import CameraView from "../../components/cameraView/CameraView";
 import {RNCamera} from "react-native-camera";
 import Modal from "../Search";
 import Filters from '../../utils/filers'
 import tags from "../../utils/tags";
+import images from "../../utils/images";
+import CameraRoll from "@react-native-community/cameraroll";
 
+
+const {width, height} = Dimensions.get('window');
 
 export interface NavigationProps {
     navigation: NavigationScreenProp<any, any>
@@ -24,6 +29,8 @@ export default class Root extends React.Component<IProps> {
     constructor(props: IProps) {
         super(props);
         this.state = {
+            viewRef: null,
+            images: [],
             camera: {
                 //captureTarget: RNCamera.Constants.CaptureTarget.cameraRoll,
                 type: RNCamera.Constants.Type.back,
@@ -31,6 +38,26 @@ export default class Root extends React.Component<IProps> {
                 flashMode: RNCamera.Constants.FlashMode.auto,
             },
         };
+    }
+
+    componentDidMount(): void {
+        const fetchParams = {
+            first: 25,
+        };
+        CameraRoll.getPhotos(fetchParams).then((data: any) => {
+            const assets = data.edges;
+            const images = assets.map((asset: any) => asset.node.image);
+            this.setState({
+                tmpImages: images,
+            });
+            const imgArray: any = [];
+            this.state.tmpImages.forEach(function (image: any, index: number) {
+                imgArray.push({uri: image.uri, id: index, height: Math.round(Math.random() * 50 + 100)})
+            });
+            this.setState({images: imgArray});
+        }).catch((err: any) => {
+            console.log("Error retrieving photos");
+        });
     }
 
     get typeIcon() {
@@ -83,130 +110,182 @@ export default class Root extends React.Component<IProps> {
 
         return (
             <View style={styles.container}>
-                <RNCamera
-                    ref={(cam) => {
-                        this.camera = cam;
-                    }}
-                    style={styles.modal}
-                    aspect={this.state.camera.aspect}
-                    type={this.state.camera.type}
-                    flashMode={this.state.camera.flashMode}
-                    onFocusChanged={() => {
-                    }}
-                    onZoomChanged={() => {
-                    }}
-                    defaultTouchToFocus
-                    mirrorImage={false}>
-                    <Header rounded searchBar style={{
-                        borderRadius: 8,
-                        backgroundColor: colors.transparent,
-                        borderBottomWidth: 0,
-                        paddingLeft: 8
-                    }}>
-                        <Left>
-                            <TouchableOpacity onPress={this.closeModal}>
-                                <Icon type={"AntDesign"} fontSize={32} style={{color: colors.white}}
-                                      name='setting'/>
-                            </TouchableOpacity>
-                        </Left>
-                        <Body>
-                        <Image style={{width: 30, height: 30}}
-                               source={require('../../assets/images/ic_flash_auto_white.png')}
-                        />
-                        </Body>
-                        <Right>
-                            <TouchableOpacity>
-                                <Icon type={"AntDesign"} fontSize={32} style={{color: colors.white}}
-                                      name='close'/>
-                            </TouchableOpacity>
-                        </Right>
-                    </Header>
-                    <View style={[styles.bottomOverlay]}>
-                        <View style={styles.frontCameraOverlay}>
-                            <TouchableOpacity
-                                style={styles.typeButton}
-                                onPress={this.switchType}
-                            >
-                                <Image
-                                    source={this.typeIcon}
-                                />
-                            </TouchableOpacity>
-                            <TouchableOpacity
-                                style={styles.flashButton}
-                                onPress={this.switchFlash}
-                            >
-                                <Image
-                                    source={this.flashIcon}
-                                />
-                            </TouchableOpacity>
-                        </View>
-                        <View style={styles.buttonOverlay}>
-                            <TouchableOpacity
-                                style={styles.captureButton}
-                                onPress={this.takePicture}
-                            >
-                                <View style={styles.outerCircle}>
-                                    <View style={styles.innerCircle}>
+                <VerticalSwipe
+                    style={styles.dragContainer}
+                    content={(
+                        <View style={styles.innerContainer}>
+                            <ScrollView>
+                                <BlurView
+                                    viewRef={this.state.viewRef}
+                                    blurType="light"
+                                    blurAmount={10}>
+
+                                    <View style={styles.innerContainer}>
+                                        <ScrollView>
+                                            <Container style={{backgroundColor: colors.blackFilter70}}>
+                                                <Header style={{
+                                                    height: 100,
+                                                    marginLeft: 5,
+                                                    marginRight: 5,
+                                                    borderBottomWidth: 0,
+                                                    backgroundColor: colors.transparent
+                                                }}>
+                                                    <Left>
+                                                        <TouchableOpacity>
+                                                            <View style={{
+                                                                flex: 1,
+                                                                flexDirection: 'row',
+                                                                alignItems: 'center',
+                                                                justifyContent: 'center'
+                                                            }}>
+                                                                <Text style={{fontSize: 14, color: colors.white}}>LAST
+                                                                    24 HOURS</Text>
+                                                                <Icon type={"MaterialCommunityIcons"} fontSize={28}
+                                                                      style={{color: colors.white}}
+                                                                      name='chevron-down'/>
+                                                            </View>
+                                                        </TouchableOpacity>
+                                                    </Left>
+                                                    <Right>
+                                                        <TouchableOpacity>
+                                                            <View style={styles.multipleSelect}>
+                                                                <Text style={{fontSize: 12, color: colors.white}}>SELECT
+                                                                    MULTIPLE</Text>
+                                                            </View>
+                                                        </TouchableOpacity>
+                                                    </Right>
+                                                </Header>
+                                                <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
+                                                    {this.state.images.map((image: any, index: number) => (
+                                                        <View key={index} style={{
+                                                            width: ((width / 3) - 4),
+                                                            marginLeft: 2,
+                                                            marginTop: 2,
+                                                            height: 200
+                                                        }}>
+                                                            <TouchableOpacity style={{flex: 1}}>
+                                                                <Image source={{url: image.uri}} style={{flex: 1}}/>
+                                                            </TouchableOpacity>
+                                                        </View>
+                                                    ))}
+
+                                                </View>
+                                            </Container>
+                                        </ScrollView>
                                     </View>
-                                </View>
-                            </TouchableOpacity>
+
+                                </BlurView>
+                            </ScrollView>
                         </View>
-                        <Footer style={{
-                            flex:20,
+
+                    )}>
+                    <RNCamera
+                        ref={(cam) => {
+                            this.camera = cam;
+                        }}
+                        style={styles.modal}
+                        aspect={this.state.camera.aspect}
+                        type={this.state.camera.type}
+                        flashMode={this.state.camera.flashMode}
+                        onFocusChanged={() => {
+                        }}
+                        onZoomChanged={() => {
+                        }}
+                        defaultTouchToFocus
+                        mirrorImage={false}>
+                        <Header rounded searchBar style={{
+                            borderRadius: 8,
                             backgroundColor: colors.transparent,
-                            borderTopWidth: 0,
-                            marginLeft: 20,
-                            marginRight: 20
+                            borderBottomWidth: 0,
+                            paddingLeft: 8
                         }}>
-                            <Left style={{flex:4}}>
-                                <TouchableOpacity>
-                                    <View style={{overflow: 'hidden'}}>
-                                        <Image style={{
-                                            width: 30,
-                                            height: 30,
-                                            borderRadius: 8,
-                                            borderColor: colors.white,
-                                            borderWidth: 2,
-                                            overflow: "hidden"
-                                        }}
-                                               source={require('../../assets/images/post1.png')}
-                                        />
-                                    </View>
+                            <Left>
+                                <TouchableOpacity onPress={this.closeModal}>
+                                    <Icon type={"AntDesign"} fontSize={32} style={{color: colors.white}}
+                                          name='setting'/>
                                 </TouchableOpacity>
                             </Left>
-                            <Body style={{flex:16}}>
-                            <ScrollView
-                                horizontal={true}
-                                showsHorizontalScrollIndicator={false}>
-                                {
-                                    Filters.map((filter: any) => (
-                                        <TouchableOpacity key={filter.id}>
-                                            <Text numberOfLines={1} key={filter.id}
-                                                  style={{
-                                                      color: colors.white,
-                                                      fontWeight: 'bold',
-                                                      marginLeft: 10,
-                                                      fontSize: 13
-                                                  }}>{filter.name.toUpperCase()}</Text>
-                                        </TouchableOpacity>
-                                    ))
-                                }
-                            </ScrollView>
-                            {/* <Icon type={"Entypo"} fontSize={24} style={{color: colors.white}}
-                                          name='chevron-down'/>*/}
+                            <Body>
+                            <Image style={{width: 30, height: 30}}
+                                   source={require('../../assets/images/ic_flash_auto_white.png')}
+                            />
                             </Body>
-                            <Right style={{flex:4}}>
-                                <TouchableOpacity>
-                                    <Icon type={"MaterialCommunityIcons"} fontSize={54}
-                                          style={{width: 39, height: 39, color: colors.white}}
-                                          name='camera-retake'/>
+                            <Right>
+                                <TouchableOpacity onPress={() => this.props.navigation.navigate('Home')}>
+                                    <Icon type={"AntDesign"} fontSize={32} style={{color: colors.white}}
+                                          name='close'/>
                                 </TouchableOpacity>
                             </Right>
+                        </Header>
+                        <View style={[styles.bottomOverlay]}>
+                            <View style={styles.buttonOverlay}>
+                                <TouchableOpacity
+                                    style={styles.captureButton}
+                                    onPress={this.takePicture}
+                                >
+                                    <View style={styles.outerCircle}>
+                                        <View style={styles.innerCircle}>
+                                        </View>
+                                    </View>
+                                </TouchableOpacity>
+                            </View>
+                            <Footer style={{
+                                flex: 20,
+                                backgroundColor: colors.transparent,
+                                borderTopWidth: 0,
+                                marginLeft: 20,
+                                marginRight: 20
+                            }}>
+                                <Left style={{flex: 4}}>
+                                    <TouchableOpacity>
+                                        <View style={{overflow: 'hidden'}}>
+                                            <Image style={{
+                                                width: 30,
+                                                height: 30,
+                                                borderRadius: 8,
+                                                borderColor: colors.white,
+                                                borderWidth: 2,
+                                                overflow: "hidden"
+                                            }}
+                                                   source={require('../../assets/images/post1.png')}
+                                            />
+                                        </View>
+                                    </TouchableOpacity>
+                                </Left>
+                                <Body style={{flex: 16}}>
+                                <ScrollView
+                                    horizontal={true}
+                                    showsHorizontalScrollIndicator={false}>
+                                    {
+                                        Filters.map((filter: any) => (
+                                            <TouchableOpacity key={filter.id}>
+                                                <Text numberOfLines={1} key={filter.id}
+                                                      style={{
+                                                          color: colors.white,
+                                                          fontWeight: 'bold',
+                                                          marginLeft: 10,
+                                                          fontSize: 13
+                                                      }}>{filter.name.toUpperCase()}</Text>
+                                            </TouchableOpacity>
+                                        ))
+                                    }
+                                </ScrollView>
+                                {/* <Icon type={"Entypo"} fontSize={24} style={{color: colors.white}}
+                                          name='chevron-down'/>*/}
+                                </Body>
+                                <Right style={{flex: 4}}>
+                                    <TouchableOpacity>
+                                        <Icon type={"MaterialCommunityIcons"} fontSize={54}
+                                              style={{width: 39, height: 39, color: colors.white}}
+                                              name='camera-retake'/>
+                                    </TouchableOpacity>
+                                </Right>
 
-                        </Footer>
-                    </View>
+                            </Footer>
+                        </View>
 
-                </RNCamera>
+                    </RNCamera>
+                </VerticalSwipe>
             </View>
         );
     }
@@ -216,6 +295,29 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
+    multipleSelect: {
+        height: 35,
+        borderRadius: 17.5,
+        backgroundColor: "#404040",
+        borderColor: colors.white,
+        padding: 8,
+        flexDirection: 'row',
+        borderWidth: 2
+    },
+    absolute: {
+        position: "absolute",
+        top: 0,
+        left: 0,
+        bottom: 0,
+        right: 0
+    },
+    dragContainer: {
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "center",
+    },
+
+    innerContainer: {},
     modal: {
         height: Dimensions.get("window").height,
         width: Dimensions.get("window").width,
@@ -262,8 +364,8 @@ const styles = StyleSheet.create({
         backgroundColor: colors.transparent,
         height: 80,
         width: 80,
-        justifyContent:'center',
-        alignItems:'center',
+        justifyContent: 'center',
+        alignItems: 'center',
         borderRadius: 40,
         borderWidth: 3,
         borderColor: '#ccc'
@@ -272,7 +374,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         height: 70,
         width: 70,
-        alignSelf:'center',
+        alignSelf: 'center',
         borderRadius: 35,
         margin: 14,
 

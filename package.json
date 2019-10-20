@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@appandflow/masonry-list": "^0.4.0",
+    "@react-native-community/blur": "^3.3.1",
     "@react-native-community/cameraroll": "^1.2.1",
     "@types/react-native-fetch-blob": "^0.10.5",
     "@types/react-native-modalbox": "^1.4.8",
@@ -36,6 +37,7 @@
     "react-native-swiper": "^1.5.14",
     "react-native-tab-view": "^2.10.0",
     "react-native-vector-icons": "^6.6.0",
+    "react-native-vertical-swipe": "^1.1.1",
     "react-native-video": "^5.0.2",
     "react-native-view-more-text": "^2.1.0",
     "react-navigation": "^4.0.5",

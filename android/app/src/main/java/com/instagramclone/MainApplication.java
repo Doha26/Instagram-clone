@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
+import com.cmcewen.blurview.BlurViewPackage;
 import com.reactnativecommunity.cameraroll.CameraRollPackage;
 import com.lwansbrough.RCTCamera.RCTCameraPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;

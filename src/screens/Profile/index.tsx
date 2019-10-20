@@ -52,7 +52,6 @@ export default class ProfileTab extends Component {
     };
 
     renderSectionOne = () => {
-
         return (
             <Aux>
                 <Spinner  color={colors.dark_gray} style={{

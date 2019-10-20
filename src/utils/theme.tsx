@@ -19,7 +19,8 @@ export const colors = {
     white: "#FFF",
     darkRed: '#e92f3c',
     black: "#000000",
-    blackFilter70: `rgba(0,0,0,0.8)`
+    blackFilter70: `rgba(0,0,0,0.8)`,
+    blackFilter90: `rgba(0,0,0,0.3)`
 };
 
 
