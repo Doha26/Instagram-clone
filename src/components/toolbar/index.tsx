@@ -10,10 +10,15 @@ const HeaderToolbar: React.StatelessComponent = (props: any) => {
             <Left>
                 <Button transparent style={{marginLeft:4}}>
                     {props.context == 'Home' ?
-                        <Image style={{width: 32, height: 28}} source={require('../../assets/images/camera.png')}/> :
+                        <TouchableOpacity onPress={props.onClicked}>
+                            <Image style={{width: 32, height: 28}} source={require('../../assets/images/camera.png')}/>
+                        </TouchableOpacity> :
+                        <TouchableOpacity>
                         <Image style={{width: 32, height: 28}}
-                               source={require('../../assets/images/chevron_left.png')}/>}
+                               source={require('../../assets/images/chevron_left.png')}/>
+                        </TouchableOpacity>}
                 </Button>
+
             </Left>
             <Body>
             <TouchableOpacity>

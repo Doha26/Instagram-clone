@@ -57,7 +57,7 @@ class PostItem extends React.Component<IPostItemProps> {
 
     animateIcon = () => {
         const {liked} = this.state;
-        this.largeAnimatedIcon.stopAnimation()
+        this.largeAnimatedIcon.stopAnimation();
 
         if (liked) {
             this.largeAnimatedIcon.bounceIn()
@@ -88,7 +88,7 @@ class PostItem extends React.Component<IPostItemProps> {
     };
 
     handleOnPressLike = () => {
-        this.smallAnimatedIcon.bounceIn()
+        this.smallAnimatedIcon.bounceIn();
         this.setState(prevState => ({liked: !prevState.liked}))
     };
 
@@ -110,8 +110,8 @@ class PostItem extends React.Component<IPostItemProps> {
         return (
             <View style={styles.container}>
                 <TouchableOpacity
-                    activeOpacity={1}
-                    onPress={this.handleOnPressLike}>
+                    activeOpacity={0.9}
+                    onPress={this.handleOnPress}>
 
                     <View style={styles.cardHeader}>
                         <View style={{alignItems: 'center', justifyContent: 'center'}}>
@@ -145,7 +145,8 @@ class PostItem extends React.Component<IPostItemProps> {
                             <SvgUri source={require('../../../assets/svg/more.svg')} style={styles.buttonMore}/>
                         </TouchableOpacity>
                     </View>
-                    <View style={{paddingLeft: isText ? 20 : 0}}>
+                    <View style={{paddingLeft: isText ? 20 : 0,justifyContent: 'center',
+                        alignItems: 'center'}}>
                         <AnimatedIcon
                             ref={this.handleLargeAnimatedIconRef}
                             name="heart"
@@ -244,7 +245,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         zIndex: 1200,
         borderRadius: 160,
-        opacity: 0
+        opacity:0
     },
     icon: {
         paddingHorizontal: 10,

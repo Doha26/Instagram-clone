@@ -10,7 +10,7 @@ import StoriesData from '../../components/StorySlide/StoriesData/StoriesData'
 import PostItems from "../../components/postItems";
 import Separator from "../../components/separator";
 
- export default class Home extends React.Component {
+export default class Home extends React.Component {
 
 
     constructor(props: any) {
@@ -26,10 +26,10 @@ import Separator from "../../components/separator";
     }
 
     componentDidMount(): void {
-        const { nav } = this.props;
+        const {nav} = this.props;
     }
 
-     wait = (timeout: number) => {
+    wait = (timeout: number) => {
         return new Promise(resolve => {
             setTimeout(resolve, timeout);
         });
@@ -49,7 +49,7 @@ import Separator from "../../components/separator";
     _handleStoryItemPress = (item: any, index: any) => {
 
         // @ts-ignore
-       // const {stories} = this.props;
+        // const {stories} = this.props;
 
         this.setState({selectedStory: item});
 
@@ -58,54 +58,54 @@ import Separator from "../../components/separator";
         //const rest = _stories.splice(index);
         //const first = _stories;
 
-       // const orderedStories = rest.concat(first);
+        // const orderedStories = rest.concat(first);
 
-       // this.setState({orderedStories});
+        // this.setState({orderedStories});
         this.setState({isModalOpen: true});
     };
 
 
     render() {
         // @ts-ignore
-        const {isModalOpen , isGalleryModalOpen} = this.state;
+        const {isModalOpen, isGalleryModalOpen} = this.state;
 
         return (
             <Fragment>
-            <View style={styles.fragment}>
-                <HeaderToolbar context="Home"/>
-                <ScrollView
-                    refreshControl={
-                        <RefreshControl refreshing={this.state.refreshing} onRefresh={() => this.onRefresh}/>
-                    }
-                    contentInsetAdjustmentBehavior="automatic"
-                    style={styles.scrollView}>
-                    <View>
-                        <View style={Object.assign({}, styles.marginContainer, styles.storiesContainer)}>
-                            <StoryItems onClicked={this._handleStoryItemPress}/>
-                        </View>
-                        <Separator/>
-                        <PostItems navigation={this.props.navigation}/>
-                    </View>
-                </ScrollView>
-                <Modal
-                    style={styles.modal}
-                    isOpen={isModalOpen}
-                    onClosed={() => this.setState({isModalOpen: false})}
-                    position="center"
-                    swipeToClose
-                    swipeArea={250}
-                    backButtonClose
-                >
-                    <StoriesData
-                        footerComponent={
-                            <TextInput
-                                placeholder="Send message"
-                                placeholderTextColor="white"
-                            />
+                <View style={styles.fragment}>
+                    <HeaderToolbar onClicked={() => this.props.navigation.navigate('Root')} context="Home"/>
+                    <ScrollView
+                        refreshControl={
+                            <RefreshControl refreshing={this.state.refreshing} onRefresh={() => this.onRefresh}/>
                         }
-                    />
-                </Modal>
-            </View>
+                        contentInsetAdjustmentBehavior="automatic"
+                        style={styles.scrollView}>
+                        <View>
+                            <View style={Object.assign({}, styles.marginContainer, styles.storiesContainer)}>
+                                <StoryItems onClicked={this._handleStoryItemPress}/>
+                            </View>
+                            <Separator/>
+                            <PostItems navigation={this.props.navigation}/>
+                        </View>
+                    </ScrollView>
+                    <Modal
+                        style={styles.modal}
+                        isOpen={isModalOpen}
+                        onClosed={() => this.setState({isModalOpen: false})}
+                        position="center"
+                        swipeToClose
+                        swipeArea={250}
+                        backButtonClose
+                    >
+                        <StoriesData
+                            footerComponent={
+                                <TextInput
+                                    placeholder="Send message"
+                                    placeholderTextColor="white"
+                                />
+                            }
+                        />
+                    </Modal>
+                </View>
             </Fragment>
         );
     }
@@ -115,13 +115,12 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         paddingLeft: 20,
         paddingRight: 20,
-        paddingTop:10
+        paddingTop: 10
     },
     marginContainer: {
         marginTop: 16
     },
-    scrollView: {
-    },
+    scrollView: {},
     storiesContainer: {
         flexDirection: 'row'
     },

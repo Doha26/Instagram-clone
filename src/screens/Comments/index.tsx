@@ -156,7 +156,7 @@ export default class Comments extends React.Component {
                     </ScrollView>
 
                 </Content>
-                <Footer style={{height:110 , padding:10}}>
+                <Footer style={{height:110 , padding:10 , backgroundColor:colors.white}}>
                     <KeyboardAvoidingView>
                         <View style={{flex: 1}}>
                             <ScrollView
