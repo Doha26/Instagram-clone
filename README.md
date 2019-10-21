@@ -15,12 +15,43 @@ A clone of the Instagram app (October 2019) made with React, React-native and Ty
 ![App-demo](./src/screenshots/Demo4.png)
 
 ##  Screen  (Story)
+![App-demo](./src/screenshots/Demo8.png)
+
+
+##  Screen  (Comments)
+![App-demo](./src/screenshots/Demo5.png)
+
+
+##  Screen  (Search By Tag)
+![App-demo](./src/screenshots/Demo7.png)
+
+##  Screen  (-#-)
 ![App-demo](./src/screenshots/Demo6.png)
 
 
-##  Screen  (Comments)
-![App-demo](./src/screenshots/Demo5.png)
+### Dependencies
 
+ - React Native (With Typescript)
+ - Native Base
+ - React Navigation
+ - Others (See package.json at the root folder)
+ 
+ ## Get Started
+ 
+ #### 1. Clone the Repo
+ 
+ On the command prompt run the following commands
+ ```sh
+ $ git clone https://github.com/Doha26/InstagramClone.git
+ 
+ $ cd InstagramClone
+ 
+ $ npm install
+ 
+ $ react-native run-ios
+ 
+ ```
 
-##  Screen  (Comments)
-![App-demo](./src/screenshots/Demo5.png)
+## Author
+
+*	[Pavel Foujeu](mailto:foujeupavel@gmail.com)

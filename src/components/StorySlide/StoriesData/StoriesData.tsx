@@ -79,7 +79,7 @@ export default class StoriesData extends PureComponent {
   };
 
   _handleSwipeLeftRight = () => {
-    alert("swipe");
+   // alert("swipe");
   };
 
   render() {

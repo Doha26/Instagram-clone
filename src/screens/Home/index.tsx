@@ -47,28 +47,13 @@ export default class Home extends React.Component {
     };
 
     _handleStoryItemPress = (item: any, index: any) => {
-
-        // @ts-ignore
-        // const {stories} = this.props;
-
         this.setState({selectedStory: item});
-
-        //const _stories = Array.from(stories);
-
-        //const rest = _stories.splice(index);
-        //const first = _stories;
-
-        // const orderedStories = rest.concat(first);
-
-        // this.setState({orderedStories});
         this.setState({isModalOpen: true});
     };
 
 
     render() {
-        // @ts-ignore
         const {isModalOpen, isGalleryModalOpen} = this.state;
-
         return (
             <Fragment>
                 <View style={styles.fragment}>

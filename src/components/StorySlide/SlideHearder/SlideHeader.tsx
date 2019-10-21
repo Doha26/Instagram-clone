@@ -33,8 +33,8 @@ export default class SlideHeader extends React.PureComponent {
         const {user, source} = this.props;
 
         const progressCustomStyles = {
-            backgroundColor: colors.lightRed,
-            borderRadius: 0,
+            backgroundColor: colors.white,
+            borderRadius: 1.5,
             height: 3,
         };
         return (
