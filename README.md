@@ -1,6 +1,9 @@
 # InstagramClone
 A clone of the Instagram app (October 2019) made with React, React-native and Typescript. 
 
+##  Preview
+![App-demo](./src/screenshots/Demo.gif)
+
 
 ##  Screen (Home)
 ![App-demo](./src/screenshots/Demo1.png)
