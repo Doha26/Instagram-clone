@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
   },
   image: {
     ...StyleSheet.absoluteFillObject,
-    width: null,
+    width: 0,
     height: Dimensions.get("window").height,
   },
   footer: {

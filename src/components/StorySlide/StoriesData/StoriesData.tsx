@@ -74,16 +74,9 @@ export default class StoriesData extends PureComponent {
     );
   }
 
-  _handleSelectedStoryOnLoaded = () => {
-    this.setState({ ready: true });
-  };
-
-  _handleSwipeLeftRight = () => {
-   // alert("swipe");
-  };
 
   render() {
-    const { x, ready } = this.state;
+    const { x } = this.state;
     // @ts-ignore
       const {footerComponent } = this.props;
 

@@ -1,7 +1,5 @@
-// @flow
 import * as React from "react";
 import {View, Image, Text, SafeAreaView, StyleSheet, Dimensions} from "react-native";
-// @ts-ignore
 import DEFAULT_AVATAR from "../../../assets/images/ic1.png";
 import ProgressBarAnimated from 'react-native-progress-bar-animated'
 import {colors} from "../../../utils/theme";
@@ -30,7 +28,7 @@ export default class SlideHeader extends React.PureComponent {
     };
     render() {
         // @ts-ignore
-        const {user, source} = this.props;
+        const {user} = this.props;
 
         const progressCustomStyles = {
             backgroundColor: colors.white,
