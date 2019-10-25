@@ -5,7 +5,7 @@ import images from '../../utils/images'
 import CardComponent from '../../components/card/CardComponent';
 import StoryItem from "../../components/storyItems/storyItem/index";
 import {colors} from "../../utils/theme";
-import Aux from "../../containers/Aux";
+import AuxHOC from "../../containers/Aux";
 
 
 const {width, height} = Dimensions.get('window');
@@ -53,7 +53,7 @@ export default class ProfileTab extends Component {
 
     renderSectionOne = () => {
         return (
-            <Aux>
+            <AuxHOC>
                 <Spinner  color={colors.dark_gray} style={{
                     marginLeft: (width / 2) - 20,
                     marginTop:30,
@@ -68,7 +68,7 @@ export default class ProfileTab extends Component {
                         </TouchableOpacity>
                     </View>
                 ))}
-            </Aux>
+            </AuxHOC>
 
 
         );

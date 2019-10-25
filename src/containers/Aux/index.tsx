@@ -1,3 +1,3 @@
 import React from 'react'
-const Aux = (props:any) => props.children;
-export default Aux;
+const AuxHOC = (props:any) => props.children;
+export default AuxHOC;

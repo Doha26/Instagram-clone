@@ -5,12 +5,17 @@ import SlideHeader from "../SlideHearder/SlideHeader";
 import ProgressBarAnimated from 'react-native-progress-bar-animated';
 
 export default class SlideItem extends PureComponent {
+
+
+
   render() {
     // @ts-ignore
     const {story: { source, user, avatar, id }, footerComponent} = this.props;
 
     return (
+
       <Fragment>
+
         <View style={styles.container}>
           <Image
             style={styles.image}
@@ -32,7 +37,7 @@ const styles = StyleSheet.create({
   },
   image: {
     ...StyleSheet.absoluteFillObject,
-    width: 0,
+    width: null,
     height: Dimensions.get("window").height,
   },
   footer: {

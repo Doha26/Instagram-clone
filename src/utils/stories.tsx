@@ -4,7 +4,7 @@ const stories = [
         "id": 0,
         "isText": true,
         "avatar": "http://placehold.it/32x32",
-        "source": "https://picsum.photos/id/212/900/900",
+        "source": "https://cdn.pixabay.com/photo/2018/11/11/16/51/ibis-3809147__480.jpg",
         "user": "Rutledge Harris"
     },
 
