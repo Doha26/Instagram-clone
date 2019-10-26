@@ -264,7 +264,7 @@ const styles = StyleSheet.create({
         top: 5,
         backgroundColor: 'transparent',
     },
-})
+});
 
 CameraRollPicker.propTypes = {
     scrollRenderAheadDistance: PropTypes.number,

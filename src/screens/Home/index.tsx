@@ -42,10 +42,6 @@ export default class Home extends React.Component {
         });
     };
 
-    handleClick = () => {
-        alert("Profile");
-    };
-
     _handleStoryItemPress = (item: any, index: any) => {
         this.setState({selectedStory: item});
         this.setState({isModalOpen: true});
