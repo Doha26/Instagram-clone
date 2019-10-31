@@ -1,6 +1,16 @@
 import React from 'react';
 import {NavigationScreenProp, SafeAreaView} from 'react-navigation';
-import {View, StyleSheet, StatusBar, TouchableOpacity, Dimensions, ScrollView, Image} from 'react-native';
+import {
+    Platform,
+    View,
+    StyleSheet,
+    StatusBar,
+    TouchableOpacity,
+    Dimensions,
+    ScrollView,
+    Image,
+    InteractionManager, findNodeHandle
+} from 'react-native';
 import VerticalSwipe from 'react-native-vertical-swipe';
 import {colors} from "../../utils/theme";
 import {BlurView} from "@react-native-community/blur";
@@ -13,6 +23,7 @@ import Filters from '../../utils/filers'
 import tags from "../../utils/tags";
 import images from "../../utils/images";
 import CameraRoll from "@react-native-community/cameraroll";
+import AuxHOC from "../../containers/Aux";
 
 
 const {width, height} = Dimensions.get('window');
@@ -55,6 +66,8 @@ export default class Root extends React.Component<IProps> {
                 imgArray.push({uri: image.uri, id: index, height: Math.round(Math.random() * 50 + 100)})
             });
             this.setState({images: imgArray});
+            
+            this.onBlurViewLoaded.bind(this)
         }).catch((err: any) => {
             console.log("Error retrieving photos");
         });
@@ -106,75 +119,165 @@ export default class Root extends React.Component<IProps> {
         return icon;
     }
 
-    render() {
+    onBlurViewLoaded() {
+        alert();
+        // Workaround for a tricky race condition on initial load.
+        InteractionManager.runAfterInteractions(() => {
+            setTimeout(() => {
+                this.setState({viewRef: findNodeHandle(this.refs.blurContainer)});
+            }, 500);
+        });
+    }
 
+    renderBlurView = () => {
+        let blurView: any = null;
+        if (Platform.OS === 'android') {
+            blurView = (
+                <View>
+                    {this.state.viewRef && <BlurView
+                        style={{position: 'absolute', left: 0, right: 0, top: 0, bottom: 0, zIndex: 100}}
+                        viewRef={this.state.viewRef}
+                        blurType="light"
+                        blurAmount={10}/>}
+                    <View style={Object.assign({}, styles.innerContainer, {
+                        position: 'absolute',
+                        left: 0,
+                        right: 0,
+                        top: 0,
+                        bottom: 0,
+                        zIndex: 400
+                    })}>
+                        <ScrollView>
+                            <Container style={{backgroundColor: colors.blackFilter70}}>
+                                <Header style={{
+                                    height: 100,
+                                    marginLeft: 5,
+                                    marginRight: 5,
+                                    borderBottomWidth: 0,
+                                    backgroundColor: colors.transparent
+                                }}>
+                                    <Left>
+                                        <TouchableOpacity>
+                                            <View style={{
+                                                flex: 1,
+                                                flexDirection: 'row',
+                                                alignItems: 'center',
+                                                justifyContent: 'center'
+                                            }}>
+                                                <Text style={{fontSize: 14, color: colors.white}}>LAST
+                                                    24 HOURS</Text>
+                                                <Icon type={"MaterialCommunityIcons"} fontSize={28}
+                                                      style={{color: colors.white}}
+                                                      name='chevron-down'/>
+                                            </View>
+                                        </TouchableOpacity>
+                                    </Left>
+                                    <Right>
+                                        <TouchableOpacity>
+                                            <View style={styles.multipleSelect}>
+                                                <Text style={{fontSize: 12, color: colors.white}}>SELECT
+                                                    MULTIPLE</Text>
+                                            </View>
+                                        </TouchableOpacity>
+                                    </Right>
+                                </Header>
+                                <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
+                                    {this.state.images.map((image: any, index: number) => (
+                                        <View key={index} style={{
+                                            width: ((width / 3) - 4),
+                                            marginLeft: 2,
+                                            marginTop: 2,
+                                            height: 200
+                                        }}>
+                                            <TouchableOpacity style={{flex: 1}}>
+                                                <Image source={{url: image.uri}} style={{flex: 1}}/>
+                                            </TouchableOpacity>
+                                        </View>
+                                    ))}
+
+                                </View>
+                            </Container>
+                        </ScrollView>
+                    </View>
+                </View>
+            );
+        } else {
+            blurView = (
+                <BlurView
+                    viewRef={this.state.viewRef}
+                    blurType="light"
+                    blurAmount={10}>
+
+                    <View style={styles.innerContainer}>
+                        <ScrollView>
+                            <Container style={{backgroundColor: colors.blackFilter70}}>
+                                <Header style={{
+                                    height: 100,
+                                    marginLeft: 5,
+                                    marginRight: 5,
+                                    borderBottomWidth: 0,
+                                    backgroundColor: colors.transparent
+                                }}>
+                                    <Left>
+                                        <TouchableOpacity>
+                                            <View style={{
+                                                flex: 1,
+                                                flexDirection: 'row',
+                                                alignItems: 'center',
+                                                justifyContent: 'center'
+                                            }}>
+                                                <Text style={{fontSize: 14, color: colors.white}}>LAST
+                                                    24 HOURS</Text>
+                                                <Icon type={"MaterialCommunityIcons"} fontSize={28}
+                                                      style={{color: colors.white}}
+                                                      name='chevron-down'/>
+                                            </View>
+                                        </TouchableOpacity>
+                                    </Left>
+                                    <Right>
+                                        <TouchableOpacity>
+                                            <View style={styles.multipleSelect}>
+                                                <Text style={{fontSize: 12, color: colors.white}}>SELECT
+                                                    MULTIPLE</Text>
+                                            </View>
+                                        </TouchableOpacity>
+                                    </Right>
+                                </Header>
+                                <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
+                                    {this.state.images.map((image: any, index: number) => (
+                                        <View key={index} style={{
+                                            width: ((width / 3) - 4),
+                                            marginLeft: 2,
+                                            marginTop: 2,
+                                            height: 200
+                                        }}>
+                                            <TouchableOpacity style={{flex: 1}}>
+                                                <Image source={{url: image.uri}} style={{flex: 1}}/>
+                                            </TouchableOpacity>
+                                        </View>
+                                    ))}
+
+                                </View>
+                            </Container>
+                        </ScrollView>
+                    </View>
+
+                </BlurView>
+            )
+        }
+    };
+
+    render() {
         return (
             <View style={styles.container}>
                 <VerticalSwipe
                     style={styles.dragContainer}
                     content={(
-                        <View style={styles.innerContainer}>
+                        <View style={styles.innerContainer}
+                              ref={'blurContainer'}
+                        >
                             <ScrollView>
-                                <BlurView
-                                    viewRef={this.state.viewRef}
-                                    blurType="light"
-                                    blurAmount={10}>
-
-                                    <View style={styles.innerContainer}>
-                                        <ScrollView>
-                                            <Container style={{backgroundColor: colors.blackFilter70}}>
-                                                <Header style={{
-                                                    height: 100,
-                                                    marginLeft: 5,
-                                                    marginRight: 5,
-                                                    borderBottomWidth: 0,
-                                                    backgroundColor: colors.transparent
-                                                }}>
-                                                    <Left>
-                                                        <TouchableOpacity>
-                                                            <View style={{
-                                                                flex: 1,
-                                                                flexDirection: 'row',
-                                                                alignItems: 'center',
-                                                                justifyContent: 'center'
-                                                            }}>
-                                                                <Text style={{fontSize: 14, color: colors.white}}>LAST
-                                                                    24 HOURS</Text>
-                                                                <Icon type={"MaterialCommunityIcons"} fontSize={28}
-                                                                      style={{color: colors.white}}
-                                                                      name='chevron-down'/>
-                                                            </View>
-                                                        </TouchableOpacity>
-                                                    </Left>
-                                                    <Right>
-                                                        <TouchableOpacity>
-                                                            <View style={styles.multipleSelect}>
-                                                                <Text style={{fontSize: 12, color: colors.white}}>SELECT
-                                                                    MULTIPLE</Text>
-                                                            </View>
-                                                        </TouchableOpacity>
-                                                    </Right>
-                                                </Header>
-                                                <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
-                                                    {this.state.images.map((image: any, index: number) => (
-                                                        <View key={index} style={{
-                                                            width: ((width / 3) - 4),
-                                                            marginLeft: 2,
-                                                            marginTop: 2,
-                                                            height: 200
-                                                        }}>
-                                                            <TouchableOpacity style={{flex: 1}}>
-                                                                <Image source={{url: image.uri}} style={{flex: 1}}/>
-                                                            </TouchableOpacity>
-                                                        </View>
-                                                    ))}
-
-                                                </View>
-                                            </Container>
-                                        </ScrollView>
-                                    </View>
-
-                                </BlurView>
+                                {this.renderBlurView}
                             </ScrollView>
                         </View>
 
