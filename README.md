@@ -51,6 +51,8 @@ A clone of the Instagram app (October 2019) made with React, React-native and Ty
  
  $ npm install
  
+ $ cd ios && pod install && cd..
+ 
  $ react-native run-ios
  
  ```
