@@ -31,7 +31,6 @@ import PostComments from "~/utils/datas/postComments";
 
 export default class Comments extends React.PureComponent<any, any> {
 
-
     constructor(props: any) {
         super(props);
         this.state = {

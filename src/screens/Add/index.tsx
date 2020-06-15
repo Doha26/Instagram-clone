@@ -12,7 +12,7 @@ import GalleryView from "~/components/GalleryView/GalleryView";
 import CameraView from "~/components/cameraView/CameraView";
 import styles from "~/screens/Add/styles";
 
-export default class Add extends React.Component {
+export default class Add extends React.PureComponent<any,any> {
     swiper: any;
 
     constructor(props: any) {

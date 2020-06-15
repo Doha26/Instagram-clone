@@ -1,16 +1,24 @@
 import React from 'react';
 import {
-    StyleSheet,
     View, RefreshControl, ScrollView
 } from "react-native";
-import {Button, Text, Container, Icon, Header, Body, Content,Left, Right, Title} from "native-base";
+import {
+    Button,
+    Container, Icon, Header, Body, Content, Left, Right, Title
+} from "native-base";
 import {colors} from "~/utils/theme";
 import PostItems from "~/components/postItems/index";
+import {NavigationScreenProp} from "react-navigation";
+import styles from "~/screens/Detail/styles";
 
-export default class PostDetail extends React.Component {
+interface IDetailProps {
+    navigation: NavigationScreenProp<any>
+}
+
+export default class PostDetail extends React.PureComponent<IDetailProps, any> {
 
 
-    constructor(props: any) {
+    constructor(props: IDetailProps) {
         super(props);
         this.state = {
             refreshing: false,
@@ -29,22 +37,25 @@ export default class PostDetail extends React.Component {
     };
 
     goBack = () => {
-        this.props.navigation.goBack();
+        const {navigation} = this.props;
+        navigation.goBack();
     };
 
     render() {
-
+        const {refreshing} = this.state;
+        const {navigation} = this.props;
         return (
             <Container>
                 <Header style={{backgroundColor: colors.white}}>
                     <Left>
                         <Button transparent onPress={this.goBack}>
-                            <Icon type={"MaterialCommunityIcons"} fontSize={32} style={{color: colors.black}}
+                            <Icon type={"MaterialCommunityIcons"}
+                                  fontSize={32} style={{color: colors.black}}
                                   name='chevron-left'/>
                         </Button>
                     </Left>
                     <Body>
-                    <Title>Posts</Title>
+                        <Title>Posts</Title>
                     </Body>
                     <Right>
 
@@ -53,12 +64,12 @@ export default class PostDetail extends React.Component {
                 <Content>
                     <ScrollView
                         refreshControl={
-                            <RefreshControl refreshing={this.state.refreshing} onRefresh={() => this.onRefresh}/>
+                            <RefreshControl refreshing={refreshing} onRefresh={() => this.onRefresh}/>
                         }
                         contentInsetAdjustmentBehavior="automatic"
                         style={styles.scrollView}>
                         <View>
-                            <PostItems navigation={this.props.navigation}/>
+                            <PostItems navigation={navigation}/>
                         </View>
                     </ScrollView>
 
@@ -67,16 +78,4 @@ export default class PostDetail extends React.Component {
         );
     }
 }
-const styles = StyleSheet.create({
-    paddingContainer: {
-        flexDirection: 'column',
-        paddingLeft: 20,
-        paddingRight: 20,
-        paddingTop: 10
-    },
-    marginContainer: {
-        marginTop: 16
-    },
-    scrollView: {},
 
-});

@@ -15,6 +15,7 @@ import LinearGradient from "react-native-linear-gradient";
 import {generateHiperlinkText} from "~/utils/methods";
 import CommentItem from "~/components/commentItem";
 import AvatarInput from "~/components/avatarInput";
+import {NavigationScreenProp} from "react-navigation";
 
 interface IPostItemProps {
     avatar: String,
@@ -28,7 +29,8 @@ interface IPostItemProps {
     text: String,
     isImage: boolean,
     isVideo: boolean,
-    isText: boolean
+    isText: boolean,
+    navigation:NavigationScreenProp<any>
 }
 
 const AnimatedIcon = Animatable.createAnimatableComponent(Icon);
