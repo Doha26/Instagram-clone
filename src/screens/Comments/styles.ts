@@ -1,4 +1,4 @@
-import {StyleSheet} from "react-native";
+import {Dimensions, StyleSheet} from "react-native";
 import {colors} from "~/utils/theme";
 
 const styles = StyleSheet.create({
@@ -44,6 +44,18 @@ const styles = StyleSheet.create({
         flex: 6
     },
     scrollView: {},
+    spinner:{
+        marginLeft: (Dimensions.get("window").width / 2) - 20,
+        marginTop: 30,
+        marginRight: 'auto'
+    },
+    commentContainer:{
+        paddingLeft: 10,
+        paddingRight: 10,
+        paddingTop: 15,
+        paddingBottom: 15
+    }
+
 });
 
 export default styles;

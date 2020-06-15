@@ -2,7 +2,6 @@ import React from "react";
 // @ts-ignore
 import Hyperlink from "react-native-hyperlink";
 import {colors} from "./theme";
-import {Text} from "native-base";
 
 const first_linkify = require("linkify-it")()
     .add("@", {

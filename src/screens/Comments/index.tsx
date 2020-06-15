@@ -4,7 +4,6 @@ import {
     RefreshControl,
     ScrollView,
     TouchableOpacity,
-    Dimensions,
     KeyboardAvoidingView,
     TextInput
 } from "react-native";
@@ -28,6 +27,7 @@ import {colors} from "~/utils/theme";
 import {Avatar, Image} from "react-native-elements";
 import CommentsEmojis from "~/utils/datas/emojis";
 import styles from "~/screens/Comments/styles";
+import PostComments from "~/utils/datas/postComments";
 
 export default class Comments extends React.PureComponent<any, any> {
 
@@ -68,7 +68,7 @@ export default class Comments extends React.PureComponent<any, any> {
     };
 
     render() {
-        const {refreshing, loading} = this.state;
+        const {refreshing} = this.state;
         return (
             <Container>
                 <Header style={{backgroundColor: colors.white}}>
@@ -94,59 +94,22 @@ export default class Comments extends React.PureComponent<any, any> {
                         }
                         contentInsetAdjustmentBehavior="automatic"
                         style={styles.scrollView}>
-                        <View style={{paddingLeft: 10, paddingRight: 10, paddingTop: 15, paddingBottom: 15}}>
+                        <View style={styles.commentContainer}>
                             <CommentItem canReply={false} linesType="multilines" context="Comments" NumberOfLines={4}
                                          author="setoo9"
                                          message="❤️❤️❤️ Awesome work. keep up✨❤️ Awesome work. keep up✨❤️ Awesome work. keep up✨❤️ Awesome work. keep up✨"
                                          avatar={true}/>
                         </View>
                         <Separator/>
-                        <Spinner color={colors.dark_gray} style={{
-                            marginLeft: (Dimensions.get("window").width / 2) - 20,
-                            marginTop: 30,
-                            marginRight: 'auto',
-                            display: this.state.loading ? 'flex' : 'none'
-                        }}/>
+                        <Spinner color={colors.dark_gray}
+                                 style={[styles.spinner, {display: this.state.loading ? 'flex' : 'none'}]}/>
                         <Content padder style={{display: this.state.loading ? 'none' : 'flex'}}>
-
-                            <CommentItem canReply={true} linesType="multilines" context="Comments" NumberOfLines={1}
-                                         author="Davila Ruise"
-                                         message="❤️ I miss you honney. keep working✨" avatar={true}/>
-
-                            <CommentItem canReply={false} linesType="multilines" context="Comments" NumberOfLines={1}
-                                         author="Jenny Scofield"
-                                         message="Hi sir , can you please suggest me some ressourses please :)"
-                                         avatar={true}/>
-
-                            <CommentItem canReply={false} linesType="multilines" context="Comments" NumberOfLines={1}
-                                         author="Abela Menson"
-                                         message="Lol. Instagram is a very great app. Keep moving and learning huys"
-                                         avatar={true}/>
-
-                            <CommentItem canReply={false} linesType="multilines" context="Comments" NumberOfLines={1}
-                                         author="Daniel Jee"
-                                         message="Hi. I'm new here, where to start ? can i found some friends here , please ?"
-                                         avatar={true}/>
-
-                            <CommentItem canReply={true} linesType="multilines" context="Comments" NumberOfLines={1}
-                                         author="Davila Ruise"
-                                         message="❤️ I miss you honney. keep working✨" avatar={true}/>
-
-                            <CommentItem canReply={false} linesType="multilines" context="Comments" NumberOfLines={1}
-                                         author="Jenny Scofield"
-                                         message="Hi sir , can you please suggest me some ressourses please :)"
-                                         avatar={true}/>
-
-                            <CommentItem canReply={false} linesType="multilines" context="Comments" NumberOfLines={1}
-                                         author="Abela Menson"
-                                         message="Lol. Instagram is a very great app. Keep moving and learning huys"
-                                         avatar={true}/>
-
-                            <CommentItem canReply={false} linesType="multilines" context="Comments" NumberOfLines={1}
-                                         author="Daniel Jee"
-                                         message="Hi. I'm new here, where to start ? can i found some friends here , please ?"
-                                         avatar={true}/>
-
+                            {PostComments.map((comment: any) => (
+                                <CommentItem key={comment.id} canReply={comment.canReply} linesType="multilines"
+                                             context="Comments" NumberOfLines={1}
+                                             author={comment.author}
+                                             message={comment.message} avatar={true}/>
+                            ))}
                         </Content>
                     </ScrollView>
                 </Content>

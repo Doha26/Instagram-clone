@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, Image, Dimensions, TouchableOpacity} from 'react-native';
 import {Icon, Container, Content, Header, Left, Body, Right, Button, Spinner} from 'native-base';
-import PostsImages from '~/utils/datas/postsImages'
+import PostsImages from '~/utils/datas/postImages'
 import CardComponent from '~/components/card/CardComponent';
 import StoryItem from "~/components/storyItems/storyItem/index";
 import {colors} from "~/utils/theme";

@@ -1,4 +1,4 @@
-const PostsImages: Array<any>  = [
+const PostImages: Array<any>  = [
     "https://cdn.pixabay.com/photo/2018/11/29/21/19/hamburg-3846525__480.jpg",
     "https://cdn.pixabay.com/photo/2018/11/11/16/51/ibis-3809147__480.jpg",
     "https://cdn.pixabay.com/photo/2018/11/23/14/19/forest-3833973__480.jpg",
@@ -14,4 +14,4 @@ const PostsImages: Array<any>  = [
     "https://cdn.pixabay.com/photo/2018/11/24/02/05/lichterkette-3834926__480.jpg",
     "https://cdn.pixabay.com/photo/2018/11/29/19/29/autumn-3846345__480.jpg"
 ];
-export default PostsImages;
+export default PostImages;
