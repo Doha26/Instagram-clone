@@ -5,7 +5,7 @@ import {
     TextInput, TouchableOpacity, KeyboardAvoidingView,
 } from "react-native";
 import {Avatar, Text} from "react-native-elements";
-import {colors} from "../../utils/theme";
+import {colors} from "~/utils/theme";
 
 export default class AvatarInput extends Component {
 
@@ -17,7 +17,7 @@ export default class AvatarInput extends Component {
                         <Avatar
                             containerStyle={styles.avatarStyle}
                             rounded
-                            source={require('../../assets/images/ic8.png')}
+                            source={require('~/assets/images/ic8.png')}
                         />
                     </TouchableOpacity>
                     <TextInput underlineColorAndroid='transparent' style={styles.inputStyle}

@@ -1,8 +1,8 @@
 import * as React from "react";
 import {View, Image, Text, SafeAreaView, StyleSheet, Dimensions} from "react-native";
-import DEFAULT_AVATAR from "../../../assets/images/ic1.png";
+import DEFAULT_AVATAR from "~/assets/images/ic1.png";
 import ProgressBarAnimated from 'react-native-progress-bar-animated'
-import {colors} from "../../../utils/theme";
+import {colors} from "~/utils/theme";
 
 export default class SlideHeader extends React.PureComponent {
     state = {
@@ -45,7 +45,7 @@ export default class SlideHeader extends React.PureComponent {
                     />
                     <View style={styles.avatarContainer}>
                         <Image
-                            source={require('../../../assets/images/ic4.png')}
+                            source={require('~/assets/images/ic4.png')}
                             defaultSource={DEFAULT_AVATAR}
                             style={styles.avatar}
                         />

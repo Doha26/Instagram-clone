@@ -1,8 +1,8 @@
 import React from 'react'
 import {PureComponent} from "react";
-import {View, StyleSheet, Text, TouchableOpacity, Dimensions} from "react-native";
+import {View, StyleSheet, TouchableOpacity, Dimensions} from "react-native";
 import {Image} from "react-native-elements";
-import {colors} from "../../utils/theme";
+import {colors} from "~/utils/theme";
 
 
 class NestedCell extends PureComponent {

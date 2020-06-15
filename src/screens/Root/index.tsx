@@ -12,18 +12,12 @@ import {
     InteractionManager, findNodeHandle
 } from 'react-native';
 import VerticalSwipe from 'react-native-vertical-swipe';
-import {colors} from "../../utils/theme";
+import {colors} from "~/utils/theme";
 import {BlurView} from "@react-native-community/blur";
-import Swiper from "../Add";
-import {Content, Footer, Header, Icon, Left, Right, Text, Body, Container} from "native-base";
-import CameraView from "../../components/cameraView/CameraView";
+import { Footer, Header, Icon, Left, Right, Text, Body, Container} from "native-base";
 import {RNCamera} from "react-native-camera";
-import Modal from "../Search";
-import Filters from '../../utils/filers'
-import tags from "../../utils/tags";
-import images from "../../utils/images";
+import Filters from '~/utils/datas/filers'
 import CameraRoll from "@react-native-community/cameraroll";
-import AuxHOC from "../../containers/Aux";
 
 
 const {width, height} = Dimensions.get('window');
@@ -66,7 +60,7 @@ export default class Root extends React.Component<IProps> {
                 imgArray.push({uri: image.uri, id: index, height: Math.round(Math.random() * 50 + 100)})
             });
             this.setState({images: imgArray});
-            
+
             this.onBlurViewLoaded.bind(this)
         }).catch((err: any) => {
             console.log("Error retrieving photos");
@@ -77,9 +71,9 @@ export default class Root extends React.Component<IProps> {
         let icon;
         const {back, front} = RNCamera.Constants.Type;
         if (this.state.camera.type === back) {
-            icon = require('../../assets/images/ic_camera_rear_white.png');
+            icon = require('~/assets/images/ic_camera_rear_white.png');
         } else if (this.state.camera.type === front) {
-            icon = require('../../assets/images/ic_camera_front_white.png');
+            icon = require('~/assets/images/ic_camera_front_white.png');
         }
         return icon;
     }
@@ -109,18 +103,17 @@ export default class Root extends React.Component<IProps> {
         const {auto, on, off} = RNCamera.Constants.FlashMode;
 
         if (this.state.camera.flashMode === auto) {
-            icon = require('../../assets/images/ic_flash_auto_white.png');
+            icon = require('~/assets/images/ic_flash_auto_white.png');
         } else if (this.state.camera.flashMode === on) {
-            icon = require('../../assets/images/ic_flash_on_white.png');
+            icon = require('~/assets/images/ic_flash_on_white.png');
         } else if (this.state.camera.flashMode === off) {
-            icon = require('../../assets/images/ic_flash_off_white.png');
+            icon = require('~/assets/images/ic_flash_off_white.png');
         }
 
         return icon;
     }
 
     onBlurViewLoaded() {
-        alert();
         // Workaround for a tricky race condition on initial load.
         InteractionManager.runAfterInteractions(() => {
             setTimeout(() => {
@@ -310,7 +303,7 @@ export default class Root extends React.Component<IProps> {
                             </Left>
                             <Body>
                             <Image style={{width: 30, height: 30}}
-                                   source={require('../../assets/images/ic_flash_auto_white.png')}
+                                   source={require('~/assets/images/ic_flash_auto_white.png')}
                             />
                             </Body>
                             <Right>
@@ -350,7 +343,7 @@ export default class Root extends React.Component<IProps> {
                                                 borderWidth: 2,
                                                 overflow: "hidden"
                                             }}
-                                                   source={require('../../assets/images/post1.png')}
+                                                   source={require('~/assets/images/post1.png')}
                                             />
                                         </View>
                                     </TouchableOpacity>

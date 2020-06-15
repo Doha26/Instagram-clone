@@ -1,5 +1,10 @@
+<p align="center">
+    <img width="90" height="90" src="https://i.ibb.co/T1CdkGm/insta.jpg">
+</p>
+
 # InstagramClone
-A clone of the Instagram app (October 2019) made with React, React-native and Typescript. 
+
+>A clone of the Instagram app (October 2019) made with React, React-native and Typescript. 
 
 ##  Preview
 ![App-demo](./src/screenshots/Demo.gif)
@@ -50,6 +55,8 @@ A clone of the Instagram app (October 2019) made with React, React-native and Ty
  $ cd InstagramClone
  
  $ npm install
+
+ $ grep -rl "s.dependency 'React/Core'" node_modules/ | xargs sed -i '' 's=React/Core=React-Core=g' // To replace React/Core with React-core for all dependencies that use it 
  
  $ cd ios && pod install && cd..
  
@@ -62,5 +69,7 @@ A clone of the Instagram app (October 2019) made with React, React-native and Ty
 *	[Pavel Foujeu](mailto:foujeupavel@gmail.com)
 
 ## Done with React-native
+
+*	[MetFlix ](https://github.com/Doha26/MetFlix)
 
 *	[Facebook challenge ](https://github.com/Doha26/Facebook-React-native)

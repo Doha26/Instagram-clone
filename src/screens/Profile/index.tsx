@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, Image, Dimensions, TouchableOpacity} from 'react-native';
 import {Icon, Container, Content, Header, Left, Body, Right, Button, Spinner} from 'native-base';
-import images from '../../utils/images'
-import CardComponent from '../../components/card/CardComponent';
-import StoryItem from "../../components/storyItems/storyItem/index";
-import {colors} from "../../utils/theme";
-import AuxHOC from "../../containers/Aux";
+import PostsImages from '~/utils/datas/postsImages'
+import CardComponent from '~/components/card/CardComponent';
+import StoryItem from "~/components/storyItems/storyItem/index";
+import {colors} from "~/utils/theme";
+import AuxHOC from "~/containers/Aux";
 
 
 const {width, height} = Dimensions.get('window');
@@ -60,7 +60,7 @@ export default class ProfileTab extends Component {
                     marginRight: 'auto',
                     display: this.state.loadingData ? 'flex' : 'none'
                 }}/>
-                {images.map((image, index) => (
+                {PostsImages.map((image, index) => (
                     <View key={index} style={{width: width / 3, height: width / 3}}>
                         <TouchableOpacity style={{flex: 1, display: this.state.loadingData ? 'none' : 'flex'}}
                                           onPress={this.openDetail}>

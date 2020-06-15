@@ -11,7 +11,7 @@ import {
 } from 'react-native'
 import {RNCamera} from 'react-native-camera';
 import RNFetchBlob from 'react-native-fetch-blob';
-import {colors} from "../../utils/theme";
+import {colors} from "~/utils/theme";
 import {Toast} from "native-base";
 
 
@@ -76,9 +76,9 @@ export default class CameraView extends Component {
         let icon;
         const {back, front} = RNCamera.Constants.Type;
         if (this.state.camera.type === back) {
-            icon = require('../../assets/images/ic_camera_rear_white.png');
+            icon = require('~/assets/images/ic_camera_rear_white.png');
         } else if (this.state.camera.type === front) {
-            icon = require('../../assets/images/ic_camera_front_white.png');
+            icon = require('~/assets/images/ic_camera_front_white.png');
         }
         return icon;
     }
@@ -108,20 +108,18 @@ export default class CameraView extends Component {
         const {auto, on, off} = RNCamera.Constants.FlashMode;
 
         if (this.state.camera.flashMode === auto) {
-            icon = require('../../assets/images/ic_flash_auto_white.png');
+            icon = require('~/assets/images/ic_flash_auto_white.png');
         } else if (this.state.camera.flashMode === on) {
-            icon = require('../../assets/images/ic_flash_on_white.png');
+            icon = require('~/assets/images/ic_flash_on_white.png');
         } else if (this.state.camera.flashMode === off) {
-            icon = require('../../assets/images/ic_flash_off_white.png');
+            icon = require('~/assets/images/ic_flash_off_white.png');
         }
 
         return icon;
     }
 
     getSelectedImages(image: any, current: any) {
-        console.log("====image path ===", current.uri)
         this.setState({galleryImagePath: current.uri});
-
         // RNFetchBlob.fs.readFile(current.uri, 'base64')
         // .then((data) => {
         //   console.log("===base64 ====",data)
@@ -212,7 +210,7 @@ export default class CameraView extends Component {
                     <View style={styles.header}>
                         <View>
                             <TouchableOpacity onPress={this.cancleImage.bind(this)}>
-                                <Image source={require('../../assets/images/close.png')} style={styles.closeBtn}/>
+                                <Image source={require('~/assets/images/close.png')} style={styles.closeBtn}/>
                             </TouchableOpacity>
                         </View>
                         <View>

@@ -1,8 +1,6 @@
-// @flow
 import React, { Fragment, PureComponent } from "react";
-import {View, Image, Dimensions, StyleSheet, SafeAreaView} from "react-native";
-import SlideHeader from "../SlideHearder/SlideHeader";
-import ProgressBarAnimated from 'react-native-progress-bar-animated';
+import {View, Image, Dimensions, StyleSheet} from "react-native";
+import SlideHeader from "~/components/StorySlide/SlideHearder/SlideHeader";
 
 export default class SlideItem extends PureComponent {
 

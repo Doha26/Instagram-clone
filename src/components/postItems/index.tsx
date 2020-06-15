@@ -1,7 +1,7 @@
 import React from 'react'
 import {ScrollView, TouchableOpacity, View, StyleSheet} from "react-native";
 import PostItem from "./PostItem";
-import posts from "../../utils/posts";
+import posts from "~/utils/datas/posts";
 
 
 const PostItems: React.StatelessComponent = (props: any) => {

@@ -1,12 +1,12 @@
 import React from "react";
 import {View, StyleSheet, TouchableOpacity, Dimensions} from "react-native";
 import {Avatar, Text} from "react-native-elements";
-import {colors} from "../../utils/theme";
-import {Left, Right, Body, Button} from "native-base";
-import {generateHiperlinkTextWithTime} from "../../utils/methods";
+import {colors} from "~/utils/theme";
+import { Right, Button} from "native-base";
+import {generateHiperlinkTextWithTime} from "~/utils/methods";
 
 const FavoriteItem: React.StatelessComponent = (props: any) => {
-    const {type, text, time, avatar, category} = props;
+    const {type, text, time, avatar} = props;
     return (
 
         <View>

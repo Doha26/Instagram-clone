@@ -4,7 +4,7 @@ const follows = [
         "type": "following",
         "text": "@Pachel started following you",
         "time": "1w",
-        "avatar":require('../assets/images/post1.png'),
+        "avatar":require('~/assets/images/post1.png'),
         "category":"week"
 
 
@@ -14,7 +14,7 @@ const follows = [
         "type": "follow",
         "text": "@cedvit and @Melvich followed @Pavel on instagram. see their post",
         "time": "2w",
-        "avatar":require('../assets/images/post2.png'),
+        "avatar":require('~/assets/images/post2.png'),
         "category":"week"
     },
     {
@@ -22,14 +22,14 @@ const follows = [
         "type": "other",
         "text": "Follow @Eric and @Bill to watch their photos and videos",
         "time": "3w",
-        "avatar":require('../assets/images/post3.png')
+        "avatar":require('~/assets/images/post3.png')
     },
     {
         "id": 3,
         "type": "other",
         "text": "Follow @GTCx , @Fsys_mi and @Polyc to watch their photos and videos",
         "time": "3w",
-        "avatar":require('../assets/images/post4.png'),
+        "avatar":require('~/assets/images/post4.png'),
         "category":"week"
     },
     {
@@ -37,7 +37,7 @@ const follows = [
         "type": "follow",
         "text": "Follow @Eric and @Bill to watch their photos and videos",
         "time": "3w",
-        "avatar":require('../assets/images/post5.png'),
+        "avatar":require('~/assets/images/post5.png'),
         "category":"month"
     },
     {
@@ -45,7 +45,7 @@ const follows = [
         "type": "follow",
         "text": "Follow @GTCx , @Fsys_mi and @Polyc to watch their photos and videos",
         "time": "3w",
-        "avatar":require('../assets/images/post6.png'),
+        "avatar":require('~/assets/images/post6.png'),
         "category":"month"
     },
 
@@ -56,7 +56,7 @@ const follows = [
         "type": "follow",
         "text": "Follow @Eric and @Bill to watch their photos and videos",
         "time": "3w",
-        "avatar":require('../assets/images/post3.png'),
+        "avatar":require('~/assets/images/post3.png'),
         "category":"month"
     },
     {
@@ -64,7 +64,7 @@ const follows = [
         "type": "following",
         "text": "Follow @GTCx , @Fsys_mi and @Polyc to watch their photos and videos",
         "time": "3w",
-        "avatar":require('../assets/images/post4.png'),
+        "avatar":require('~/assets/images/post4.png'),
         "category":"month"
     },
     {
@@ -72,7 +72,7 @@ const follows = [
         "type": "other",
         "text": "Follow @Eric and @Bill to watch their photos and videos",
         "time": "3w",
-        "avatar":require('../assets/images/post5.png'),
+        "avatar":require('~/assets/images/post5.png'),
         "category":"early"
     },
     {
@@ -80,7 +80,7 @@ const follows = [
         "type": "follow",
         "text": "Follow @GTCx , @Fsys_mi and @Polyc to watch their photos and videos",
         "time": "3w",
-        "avatar":require('../assets/images/post6.png'),
+        "avatar":require('~/assets/images/post6.png'),
         "category":"early"
     },
     {
@@ -88,7 +88,7 @@ const follows = [
         "type": "other",
         "text": "Follow @Eric and @Bill to watch their photos and videos",
         "time": "3w",
-        "avatar":require('../assets/images/post5.png'),
+        "avatar":require('~/assets/images/post5.png'),
         "category":"early"
     },
     {
@@ -96,7 +96,7 @@ const follows = [
         "type": "other",
         "text": "Follow @GTCx , @Fsys_mi and @Polyc to watch their photos and videos",
         "time": "3w",
-        "avatar":require('../assets/images/post6.png'),
+        "avatar":require('~/assets/images/post6.png'),
         "category":"early"
     },
 
@@ -108,7 +108,7 @@ const follows = [
         "type": "following",
         "text": "@Pachel started following you",
         "time": "1w",
-        "avatar":require('../assets/images/post1.png'),
+        "avatar":require('~/assets/images/post1.png'),
         "category":"week"
 
 
@@ -118,7 +118,7 @@ const follows = [
         "type": "follow",
         "text": "@cedvit and @Melvich followed @Pavel on instagram. see their post",
         "time": "2w",
-        "avatar":require('../assets/images/post2.png'),
+        "avatar":require('~/assets/images/post2.png'),
         "category":"week"
     },
     {
@@ -126,14 +126,14 @@ const follows = [
         "type": "other",
         "text": "Follow @Eric and @Bill to watch their photos and videos",
         "time": "3w",
-        "avatar":require('../assets/images/post3.png')
+        "avatar":require('~/assets/images/post3.png')
     },
     {
         "id": 13,
         "type": "other",
         "text": "Follow @GTCx , @Fsys_mi and @Polyc to watch their photos and videos",
         "time": "3w",
-        "avatar":require('../assets/images/post4.png'),
+        "avatar":require('~/assets/images/post4.png'),
         "category":"week"
     },
     {
@@ -141,7 +141,7 @@ const follows = [
         "type": "follow",
         "text": "Follow @Eric and @Bill to watch their photos and videos",
         "time": "3w",
-        "avatar":require('../assets/images/post5.png'),
+        "avatar":require('~/assets/images/post5.png'),
         "category":"month"
     },
     {
@@ -149,7 +149,7 @@ const follows = [
         "type": "follow",
         "text": "Follow @GTCx , @Fsys_mi and @Polyc to watch their photos and videos",
         "time": "3w",
-        "avatar":require('../assets/images/post6.png'),
+        "avatar":require('~/assets/images/post6.png'),
         "category":"month"
     },
 
@@ -160,7 +160,7 @@ const follows = [
         "type": "follow",
         "text": "Follow @Eric and @Bill to watch their photos and videos",
         "time": "3w",
-        "avatar":require('../assets/images/post3.png'),
+        "avatar":require('~/assets/images/post3.png'),
         "category":"month"
     },
 ];

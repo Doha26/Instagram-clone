@@ -12,15 +12,13 @@ import {
     Header,
     Item, Input, Text, Left, Body, Right, Content, Footer
 } from "native-base";
-import {colors} from "../../utils/theme";
-import NestedCell from '../../components/nestedCell/index'
+import {colors} from "~/utils/theme";
+import NestedCell from '~/components/nestedCell/index'
 import CameraRoll from '@react-native-community/cameraroll';
-import SearchTag from "../../components/searchTag";
-import tags from "../../utils/tags";
+import SearchTag from "~/components/searchTag";
+import tags from "~/utils/datas/tags";
 import Modal from 'react-native-modalbox';
 import {RNCamera} from "react-native-camera";
-import {bool} from "prop-types";
-
 
 export default class Comments extends React.Component {
 

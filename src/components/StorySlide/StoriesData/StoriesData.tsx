@@ -5,11 +5,10 @@ import {
   Dimensions,
   Platform,
   View,
-  ActivityIndicator
 } from "react-native";
 
-import SlideItem from "../SlideItem/SlideItem";
-import stories from '../../../utils/stories'
+import SlideItem from "~/components/StorySlide/SlideItem/SlideItem";
+import stories from '~/utils/datas/stories'
 
 const { width } = Dimensions.get("window");
 const perspective = width;
@@ -26,7 +25,6 @@ export default class StoriesData extends PureComponent {
 
   constructor(props:any) {
     super(props);
-    //this.stories = stories.map(() => React.createRef());
       const _stories = stories;
     this.stories = _stories.map(() => React.createRef());
   }

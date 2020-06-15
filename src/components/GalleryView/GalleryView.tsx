@@ -6,7 +6,7 @@ import {
     Image, Dimensions
 } from 'react-native'
 // @ts-ignore
-import CameraRollPicker from '../cameraRollPicker/index';
+import CameraRollPicker from '~/components/cameraRollPicker/index';
 // @ts-ignore
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
 

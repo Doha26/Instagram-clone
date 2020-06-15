@@ -3,12 +3,12 @@ import {
     StyleSheet,
     View, RefreshControl, ScrollView, TextInput, Dimensions
 } from "react-native";
-import HeaderToolbar from '../../components/toolbar/index'
-import StoryItems from '../../components/storyItems/index'
+import HeaderToolbar from '~/components/toolbar/index'
+import StoryItems from '~/components/storyItems/index'
 import Modal from "react-native-modalbox";
-import StoriesData from '../../components/StorySlide/StoriesData/StoriesData'
-import PostItems from "../../components/postItems";
-import Separator from "../../components/separator";
+import StoriesData from '~/components/StorySlide/StoriesData/StoriesData'
+import PostItems from "~/components/postItems";
+import Separator from "~/components/separator";
 
 export default class Home extends React.Component {
 

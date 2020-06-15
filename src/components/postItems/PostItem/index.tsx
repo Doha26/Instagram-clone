@@ -1,21 +1,20 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {
     TouchableOpacity, View,
     StyleSheet,
     Text,
     Image, Dimensions
 } from "react-native";
-import {colors} from "../../../utils/theme";
+import {colors} from "~/utils/theme";
 import SvgUri from "react-native-svg-uri";
 import {Avatar} from "react-native-elements";
 import * as Animatable from 'react-native-animatable'
 import Icon from 'react-native-vector-icons/AntDesign'
-// @ts-ignore
 import Video from 'react-native-video';
 import LinearGradient from "react-native-linear-gradient";
-import {generateHiperlinkText} from "../../../utils/methods";
-import CommentItem from "../../commentItem";
-import AvatarInput from "../../avatarInput";
+import {generateHiperlinkText} from "~/utils/methods";
+import CommentItem from "~/components/commentItem";
+import AvatarInput from "~/components/avatarInput";
 
 interface IPostItemProps {
     avatar: String,
@@ -26,9 +25,7 @@ interface IPostItemProps {
     commentCount: String,
     shareCount: String,
     videoUrl: string,
-
     text: String,
-
     isImage: boolean,
     isVideo: boolean,
     isText: boolean
@@ -142,7 +139,7 @@ class PostItem extends React.Component<IPostItemProps> {
                             <Text style={styles.postAuthor}>{author}</Text>
                         </View>
                         <TouchableOpacity style={{alignSelf: 'flex-end', flex: 1}}>
-                            <SvgUri source={require('../../../assets/svg/more.svg')} style={styles.buttonMore}/>
+                            <SvgUri source={require('~/assets/svg/more.svg')} style={styles.buttonMore}/>
                         </TouchableOpacity>
                     </View>
                     <View style={{paddingLeft: isText ? 20 : 0,justifyContent: 'center',
@@ -173,11 +170,6 @@ class PostItem extends React.Component<IPostItemProps> {
                     </View>
                     <View style={styles.cardActionContainer}>
                         <TouchableOpacity>
-                            {/*
-                        <Image style={{width: 26, height: 26}}
-                               source={require('../../../assets/images/heart_red.png')}/>
-                        */}
-
                             <AnimatedIcon
                                 ref={this.handleSmallAnimatedIconRef}
                                 name={liked ? 'heart' : 'hearto'}
@@ -190,15 +182,15 @@ class PostItem extends React.Component<IPostItemProps> {
                         </TouchableOpacity>
                         <TouchableOpacity style={{marginLeft: 16}}>
                             <Image style={{width: 26, height: 26}}
-                                   source={require('../../../assets/images/comment.png')}/>
+                                   source={require('~/assets/images/comment.png')}/>
                         </TouchableOpacity>
                         <TouchableOpacity style={{marginLeft: 16, marginTop: 2}}>
                             <Image style={{width: 26, height: 26}}
-                                   source={require('../../../assets/images/direct.png')}/>
+                                   source={require('~/assets/images/direct.png')}/>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.flexEndAligned}>
                             <Image style={{width: 22, height: 25}}
-                                   source={require('../../../assets/images/collection.png')}/>
+                                   source={require('~/assets/images/collection.png')}/>
                         </TouchableOpacity>
 
                     </View>

@@ -1,8 +1,7 @@
 import React from "react";
 import {View, StyleSheet, TouchableOpacity} from "react-native";
 import {Avatar, Text} from "react-native-elements";
-import {colors} from "../../utils/theme";
-import Separator from "../../components/separator/index";
+import {colors} from "~/utils/theme";
 
 const CommentItem: React.StatelessComponent = (props: any) => {
     return (
@@ -18,7 +17,7 @@ const CommentItem: React.StatelessComponent = (props: any) => {
                     <Avatar
                         containerStyle={styles.avatarStyle}
                         rounded
-                        source={require('../../assets/images/ic8.png')}
+                        source={require('~/assets/images/ic8.png')}
                     />
                 </TouchableOpacity> : null}
                 <Text numberOfLines={props.linesType == "multilines" ? props.numberOfLines : 1}
@@ -66,7 +65,7 @@ const CommentItem: React.StatelessComponent = (props: any) => {
                                     <Avatar
                                         containerStyle={styles.avatarStyle}
                                         rounded
-                                        source={require('../../assets/images/ic8.png')}
+                                        source={require('~/assets/images/ic8.png')}
                                     />
                                 </TouchableOpacity> : null}
                                 <Text numberOfLines={props.linesType == "multilines" ? props.numberOfLines : 1}

@@ -4,8 +4,8 @@ import {
     View, RefreshControl, ScrollView
 } from "react-native";
 import {Button, Text, Container, Icon, Header, Body, Content,Left, Right, Title} from "native-base";
-import {colors} from "../../utils/theme";
-import PostItems from "../../components/postItems/index";
+import {colors} from "~/utils/theme";
+import PostItems from "~/components/postItems/index";
 
 export default class PostDetail extends React.Component {
 

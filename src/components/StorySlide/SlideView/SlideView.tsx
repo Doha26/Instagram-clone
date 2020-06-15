@@ -1,8 +1,8 @@
 import React, {Component, Fragment} from "react";
-import {Dimensions, View, StyleSheet, TextInput} from "react-native";
+import {Dimensions, StyleSheet, TextInput} from "react-native";
 import Modal from "react-native-modalbox";
 
-import StoriesData from "../StoriesData/StoriesData";
+import StoriesData from "~/components/StorySlide/StoriesData/StoriesData";
 
 
 export default class SlideView extends Component {

@@ -1,11 +1,10 @@
 import {createAppContainer, createSwitchNavigator} from 'react-navigation';
 import {createStackNavigator,} from 'react-navigation-stack';
 import Home from "./home";
-import Main from "../screens/Home";
-import Intro from "../screens/Intro";
-import Comments from "../screens/Comments";
-import PostDetail from "../screens/Detail";
-import Root from "../screens/Root";
+import Intro from "~/screens/Intro";
+import Comments from "~/screens/Comments";
+import PostDetail from "~/screens/Detail";
+import Root from "~/screens/Root";
 
 const appStack = createStackNavigator({
     Root: {

@@ -1,18 +1,13 @@
 import React from 'react';
 import {
     StyleSheet,
-    View, RefreshControl, ScrollView, TouchableOpacity
+    View, RefreshControl, ScrollView
 } from "react-native";
-import Separator from "../../components/separator";
-import CommentItem from "../../components/commentItem/index";
 
-import {Button, Text, Container, Icon, Header, Body, Content, Footer, FooterTab, Left, Right, Title} from "native-base";
-import {colors} from "../../utils/theme";
-import {Image} from "react-native-elements";
-import FavoriteItem from "../../components/favoriteItem";
-import tags from "../../utils/tags";
-import SearchTag from "../Search";
-import follows from "../../utils/follows";
+import {Button, Text, Container, Header, Body, Content, Left, Right, Title} from "native-base";
+import {colors} from "~/utils/theme";
+import FavoriteItem from "~/components/favoriteItem";
+import follows from "~/utils/datas/follows";
 
 export default class Comments extends React.Component {
 

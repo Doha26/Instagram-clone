@@ -1,7 +1,7 @@
 import React from 'react';
 import {NavigationScreenProp, SafeAreaView} from 'react-navigation';
 import {View, StyleSheet, StatusBar} from 'react-native';
-import {colors} from "../../utils/theme";
+import {colors} from "~/utils/theme";
 import {Image} from "react-native-elements";
 
 
@@ -43,7 +43,7 @@ export default class Intro extends React.Component<IProps> {
                 <View style={{flex:1,flexDirection: 'column', justifyContent: 'center', alignItems:'center'}}>
                     <Image
                         style={styles.logo}
-                        source={require('../../assets/images/logo.png')}
+                        source={require('~/assets/images/logo.png')}
                     />
                 </View>
             </View>

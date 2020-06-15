@@ -1,6 +1,6 @@
 import React from 'react'
 import {ScrollView, TouchableOpacity, View, StyleSheet} from "react-native";
-import avatars from '../../utils/avatars'
+import avatars from '~/utils/datas/avatars'
 import StoryItem from "./storyItem";
 
 
