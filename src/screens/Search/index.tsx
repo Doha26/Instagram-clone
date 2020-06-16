@@ -1,8 +1,7 @@
 import React from 'react';
 import {
-    Dimensions,
     ScrollView,
-    StyleSheet, TouchableOpacity, View
+    TouchableOpacity, View
 } from "react-native";
 import MasonryList from '@appandflow/masonry-list';
 import {
@@ -10,7 +9,7 @@ import {
     Container,
     Icon,
     Header,
-    Item, Input, Text, Left, Body, Right, Content, Footer
+    Item, Input, Text, Left, Right, Footer
 } from "native-base";
 import {colors} from "~/utils/theme";
 import NestedCell from '~/components/nestedCell/index'
@@ -19,8 +18,9 @@ import SearchTag from "~/components/searchTag";
 import tags from "~/utils/datas/tags";
 import Modal from 'react-native-modalbox';
 import {RNCamera} from "react-native-camera";
+import styles from "~/screens/Search/styles";
 
-export default class Comments extends React.Component {
+export default class Comments extends React.PureComponent<any, any> {
 
     constructor(props: any) {
         super(props);
@@ -33,9 +33,7 @@ export default class Comments extends React.Component {
             tmpImages: null,
             images: [],
             search: '',
-
             camera: {
-                //captureTarget: RNCamera.Constants.CaptureTarget.cameraRoll,
                 type: RNCamera.Constants.Type.back,
                 orientation: RNCamera.Constants.Orientation.auto,
                 flashMode: RNCamera.Constants.FlashMode.auto,
@@ -95,10 +93,10 @@ export default class Comments extends React.Component {
     }
 
     render() {
-        const {search, isModalOpen} = this.state;
+        const {isModalOpen} = this.state;
         return (
             <Container>
-                <Header rounded searchBar style={{borderRadius: 8, backgroundColor: colors.white, borderBottomWidth:0,paddingLeft: 8}}>
+                <Header rounded searchBar style={styles.headerSearch}>
                     <Item style={{borderRadius: 8, backgroundColor: colors.exlight_gray}}>
                         <Icon name="ios-search"/>
                         <Input placeholder="Search"/>
@@ -155,8 +153,8 @@ export default class Comments extends React.Component {
                         defaultTouchToFocus
                         mirrorImage={false}
                     >
-                        <View style={{flex:1, backgroundColor:colors.extraLightRedFiltered}}>
-                            <Header rounded searchBar style={{borderRadius: 8, backgroundColor: colors.transparent,borderBottomWidth:0, paddingLeft: 8}}>
+                        <View style={{flex: 1, backgroundColor: colors.extraLightRedFiltered}}>
+                            <Header rounded searchBar style={styles.headerCamera}>
                                 <Left>
                                     <TouchableOpacity onPress={this.closeModal}>
                                         <Icon type={"AntDesign"} fontSize={32} style={{color: colors.white}}
@@ -170,23 +168,19 @@ export default class Comments extends React.Component {
                                     </TouchableOpacity>
                                 </Right>
                             </Header>
-                            <View style={{flex:1, justifyContent:'center' , alignItems:'center'}}>
-                                <Icon type={"AntDesign"} style={{color: colors.dark_gray ,fontSize:52}}
+                            <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+                                <Icon type={"AntDesign"} style={{color: colors.dark_gray, fontSize: 52}}
                                       name='instagram'/>
-                                <Text style={{fontWeight:'bold', marginTop:9, color:colors.dark_gray,textTransform:'uppercase',fontSize:32}}>Username</Text>
+                                <Text style={styles.textUsername}>Username</Text>
                             </View>
-                            <Footer style={{height: 20, backgroundColor: colors.transparent , borderTopWidth:0}}>
-                                <View style={{
-                                    alignItems:'center',
-                                    flexDirection: 'row',
-                                    justifyContent: 'center',
-                                    flex: 1
-                                }}>
+                            <Footer style={styles.footer}>
+                                <View style={styles.footerView}>
                                     <TouchableOpacity>
                                         <Icon type={"AntDesign"} fontSize={32} style={{color: colors.white}}
                                               name='scan1'/>
                                     </TouchableOpacity>
-                                    <Text style={{color:colors.white, fontWeight:'bold', marginLeft:10}}>Go to your nametag</Text>
+                                    <Text style={styles.nameTag}>Go to your
+                                        nametag</Text>
                                 </View>
                             </Footer>
                         </View>
@@ -196,21 +190,4 @@ export default class Comments extends React.Component {
         );
     }
 }
-const styles = StyleSheet.create({
-    paddingContainer: {
-        flexDirection: 'column',
-        paddingLeft: 20,
-        paddingRight: 20,
-        paddingTop: 10
-    },
-    marginContainer: {
-        marginTop: 16
-    },
-    modal: {
-        height: Dimensions.get("window").height,
-        width: Dimensions.get("window").width,
-        flex: 1
-    },
-    scrollView: {},
 
-});
