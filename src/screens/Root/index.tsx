@@ -1,10 +1,9 @@
 import React from 'react';
-import {NavigationScreenProp, SafeAreaView} from 'react-navigation';
+import {NavigationScreenProp} from 'react-navigation';
 import {
     Platform,
     View,
     StyleSheet,
-    StatusBar,
     TouchableOpacity,
     Dimensions,
     ScrollView,
@@ -14,22 +13,20 @@ import {
 import VerticalSwipe from 'react-native-vertical-swipe';
 import {colors} from "~/utils/theme";
 import {BlurView} from "@react-native-community/blur";
-import { Footer, Header, Icon, Left, Right, Text, Body, Container} from "native-base";
+import {Footer, Header, Icon, Left, Right, Text, Body, Container} from "native-base";
 import {RNCamera} from "react-native-camera";
 import Filters from '~/utils/datas/filers'
 import CameraRoll from "@react-native-community/cameraroll";
+import styles from "~/screens/Root/styles";
 
 
-const {width, height} = Dimensions.get('window');
+const {width} = Dimensions.get('window');
 
-export interface NavigationProps {
+interface IProps {
     navigation: NavigationScreenProp<any, any>
 }
 
-interface IProps extends NavigationProps {
-}
-
-export default class Root extends React.Component<IProps> {
+export default class Root extends React.PureComponent<IProps, any> {
 
     constructor(props: IProps) {
         super(props);
@@ -37,7 +34,6 @@ export default class Root extends React.Component<IProps> {
             viewRef: null,
             images: [],
             camera: {
-                //captureTarget: RNCamera.Constants.CaptureTarget.cameraRoll,
                 type: RNCamera.Constants.Type.back,
                 orientation: RNCamera.Constants.Orientation.auto,
                 flashMode: RNCamera.Constants.FlashMode.auto,
@@ -123,23 +119,17 @@ export default class Root extends React.Component<IProps> {
     }
 
     renderBlurView = () => {
+        const {images} = this.state;
         let blurView: any = null;
         if (Platform.OS === 'android') {
             blurView = (
                 <View>
                     {this.state.viewRef && <BlurView
-                        style={{position: 'absolute', left: 0, right: 0, top: 0, bottom: 0, zIndex: 100}}
+                        style={styles.absoluteFillBlur}
                         viewRef={this.state.viewRef}
                         blurType="light"
                         blurAmount={10}/>}
-                    <View style={Object.assign({}, styles.innerContainer, {
-                        position: 'absolute',
-                        left: 0,
-                        right: 0,
-                        top: 0,
-                        bottom: 0,
-                        zIndex: 400
-                    })}>
+                    <View style={Object.assign({}, styles.innerContainer, styles.absoluteFillView)}>
                         <ScrollView>
                             <Container style={{backgroundColor: colors.blackFilter70}}>
                                 <Header style={{
@@ -200,25 +190,13 @@ export default class Root extends React.Component<IProps> {
                     viewRef={this.state.viewRef}
                     blurType="light"
                     blurAmount={10}>
-
                     <View style={styles.innerContainer}>
                         <ScrollView>
                             <Container style={{backgroundColor: colors.blackFilter70}}>
-                                <Header style={{
-                                    height: 100,
-                                    marginLeft: 5,
-                                    marginRight: 5,
-                                    borderBottomWidth: 0,
-                                    backgroundColor: colors.transparent
-                                }}>
+                                <Header style={styles.headerBlur}>
                                     <Left>
                                         <TouchableOpacity>
-                                            <View style={{
-                                                flex: 1,
-                                                flexDirection: 'row',
-                                                alignItems: 'center',
-                                                justifyContent: 'center'
-                                            }}>
+                                            <View style={styles.leftBtnBlur}>
                                                 <Text style={{fontSize: 14, color: colors.white}}>LAST
                                                     24 HOURS</Text>
                                                 <Icon type={"MaterialCommunityIcons"} fontSize={28}
@@ -237,13 +215,8 @@ export default class Root extends React.Component<IProps> {
                                     </Right>
                                 </Header>
                                 <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
-                                    {this.state.images.map((image: any, index: number) => (
-                                        <View key={index} style={{
-                                            width: ((width / 3) - 4),
-                                            marginLeft: 2,
-                                            marginTop: 2,
-                                            height: 200
-                                        }}>
+                                    {images.map((image: any, index: number) => (
+                                        <View key={index} style={styles.blurImageStyle}>
                                             <TouchableOpacity style={{flex: 1}}>
                                                 <Image source={{url: image.uri}} style={{flex: 1}}/>
                                             </TouchableOpacity>
@@ -254,13 +227,14 @@ export default class Root extends React.Component<IProps> {
                             </Container>
                         </ScrollView>
                     </View>
-
                 </BlurView>
             )
         }
+        return blurView
     };
 
     render() {
+        const {navigation} = this.props;
         return (
             <View style={styles.container}>
                 <VerticalSwipe
@@ -270,7 +244,7 @@ export default class Root extends React.Component<IProps> {
                               ref={'blurContainer'}
                         >
                             <ScrollView>
-                                {this.renderBlurView}
+                                {this.renderBlurView()}
                             </ScrollView>
                         </View>
 
@@ -289,85 +263,58 @@ export default class Root extends React.Component<IProps> {
                         }}
                         defaultTouchToFocus
                         mirrorImage={false}>
-                        <Header rounded searchBar style={{
-                            borderRadius: 8,
-                            backgroundColor: colors.transparent,
-                            borderBottomWidth: 0,
-                            paddingLeft: 8
-                        }}>
+                        <Header rounded searchBar style={styles.headerCamera}>
                             <Left>
-                                <TouchableOpacity onPress={this.closeModal}>
+                                <TouchableOpacity>
                                     <Icon type={"AntDesign"} fontSize={32} style={{color: colors.white}}
                                           name='setting'/>
                                 </TouchableOpacity>
                             </Left>
                             <Body>
-                            <Image style={{width: 30, height: 30}}
-                                   source={require('~/assets/images/ic_flash_auto_white.png')}
-                            />
+                                <Image style={{width: 30, height: 30}}
+                                       source={require('~/assets/images/ic_flash_auto_white.png')}
+                                />
                             </Body>
                             <Right>
-                                <TouchableOpacity onPress={() => this.props.navigation.navigate('Home')}>
+                                <TouchableOpacity onPress={() => navigation.navigate('Home')}>
                                     <Icon type={"AntDesign"} fontSize={32} style={{color: colors.white}}
                                           name='close'/>
                                 </TouchableOpacity>
                             </Right>
                         </Header>
-                        <View style={[styles.bottomOverlay]}>
+                        <View style={styles.bottomOverlay}>
                             <View style={styles.buttonOverlay}>
                                 <TouchableOpacity
-                                    style={styles.captureButton}
-                                    onPress={this.takePicture}
-                                >
+                                    style={styles.captureButton}>
                                     <View style={styles.outerCircle}>
                                         <View style={styles.innerCircle}>
                                         </View>
                                     </View>
                                 </TouchableOpacity>
                             </View>
-                            <Footer style={{
-                                flex: 20,
-                                backgroundColor: colors.transparent,
-                                borderTopWidth: 0,
-                                marginLeft: 20,
-                                marginRight: 20
-                            }}>
+                            <Footer style={styles.footerCamera}>
                                 <Left style={{flex: 4}}>
                                     <TouchableOpacity>
                                         <View style={{overflow: 'hidden'}}>
-                                            <Image style={{
-                                                width: 30,
-                                                height: 30,
-                                                borderRadius: 8,
-                                                borderColor: colors.white,
-                                                borderWidth: 2,
-                                                overflow: "hidden"
-                                            }}
+                                            <Image style={styles.imageBtnFooter}
                                                    source={require('~/assets/images/post1.png')}
                                             />
                                         </View>
                                     </TouchableOpacity>
                                 </Left>
                                 <Body style={{flex: 16}}>
-                                <ScrollView
-                                    horizontal={true}
-                                    showsHorizontalScrollIndicator={false}>
-                                    {
-                                        Filters.map((filter: any) => (
-                                            <TouchableOpacity key={filter.id}>
-                                                <Text numberOfLines={1} key={filter.id}
-                                                      style={{
-                                                          color: colors.white,
-                                                          fontWeight: 'bold',
-                                                          marginLeft: 10,
-                                                          fontSize: 13
-                                                      }}>{filter.name.toUpperCase()}</Text>
-                                            </TouchableOpacity>
-                                        ))
-                                    }
-                                </ScrollView>
-                                {/* <Icon type={"Entypo"} fontSize={24} style={{color: colors.white}}
-                                          name='chevron-down'/>*/}
+                                    <ScrollView
+                                        horizontal={true}
+                                        showsHorizontalScrollIndicator={false}>
+                                        {
+                                            Filters.map((filter: any) => (
+                                                <TouchableOpacity key={filter.id}>
+                                                    <Text numberOfLines={1} key={filter.id}
+                                                          style={styles.textFilter}>{filter.name.toUpperCase()}</Text>
+                                                </TouchableOpacity>
+                                            ))
+                                        }
+                                    </ScrollView>
                                 </Body>
                                 <Right style={{flex: 4}}>
                                     <TouchableOpacity>
@@ -379,119 +326,9 @@ export default class Root extends React.Component<IProps> {
 
                             </Footer>
                         </View>
-
                     </RNCamera>
                 </VerticalSwipe>
             </View>
         );
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
-    multipleSelect: {
-        height: 35,
-        borderRadius: 17.5,
-        backgroundColor: "#404040",
-        borderColor: colors.white,
-        padding: 8,
-        flexDirection: 'row',
-        borderWidth: 2
-    },
-    absolute: {
-        position: "absolute",
-        top: 0,
-        left: 0,
-        bottom: 0,
-        right: 0
-    },
-    dragContainer: {
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
-    },
-
-    innerContainer: {},
-    modal: {
-        height: Dimensions.get("window").height,
-        width: Dimensions.get("window").width,
-        flex: 1
-    },
-    bottomOverlay: {
-        position: 'absolute',
-        right: 0,
-        left: 0,
-        alignItems: 'center',
-        backgroundColor: colors.black,
-        bottom: 0,
-        flexDirection: 'column',
-        alignItems: 'stretch',
-    },
-    frontCameraOverlay: {
-        padding: 10,
-        flexDirection: 'row',
-        backgroundColor: colors.transparent,
-        justifyContent: 'space-between'
-    },
-    buttonOverlay: {
-        height: 130,
-        alignItems: 'center',
-        backgroundColor: colors.black,
-        justifyContent: 'center'
-    },
-    captureButton: {
-        paddingLeft: 15,
-        paddingRight: 15,
-        marginTop: 20,
-    },
-    typeButton: {
-        padding: 5,
-    },
-    flashButton: {
-        padding: 5,
-    },
-    closeBtn: {
-        height: 25,
-        width: 25
-    },
-    outerCircle: {
-        backgroundColor: colors.transparent,
-        height: 80,
-        width: 80,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 40,
-        borderWidth: 3,
-        borderColor: '#ccc'
-    },
-    innerCircle: {
-        backgroundColor: '#fff',
-        height: 70,
-        width: 70,
-        alignSelf: 'center',
-        borderRadius: 35,
-        margin: 14,
-
-    },
-    recOuterCircle: {
-        backgroundColor: '#ddd',
-        height: 80,
-        width: 80,
-        borderRadius: 50,
-        borderWidth: 1,
-        borderColor: '#918b8b'
-    },
-    recInnerCircle: {
-        backgroundColor: '#e54242',
-        height: 70,
-        width: 70,
-        borderRadius: 50,
-        margin: 4
-    },
-    previewImage: {
-        backgroundColor: 'red'
-    }
-
-});

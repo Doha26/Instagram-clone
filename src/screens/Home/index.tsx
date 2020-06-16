@@ -9,12 +9,14 @@ import Modal from "react-native-modalbox";
 import StoriesData from '~/components/StorySlide/StoriesData/StoriesData'
 import PostItems from "~/components/postItems";
 import Separator from "~/components/separator";
+import styles from "~/screens/Home/styles";
 
-export default class Home extends React.Component {
+export default class Home extends React.PureComponent<any, any> {
 
 
     constructor(props: any) {
         super(props);
+
         this.state = {
             refreshing: false,
             setRefreshing: false,
@@ -49,14 +51,16 @@ export default class Home extends React.Component {
 
 
     render() {
-        const {isModalOpen, isGalleryModalOpen} = this.state;
+        const {isModalOpen, refreshing} = this.state;
+        const {navigation} = this.props;
+
         return (
             <Fragment>
                 <View style={styles.fragment}>
-                    <HeaderToolbar onClicked={() => this.props.navigation.navigate('Root')} context="Home"/>
+                    <HeaderToolbar onClicked={() => navigation.navigate('Root')} context="Home"/>
                     <ScrollView
                         refreshControl={
-                            <RefreshControl refreshing={this.state.refreshing} onRefresh={() => this.onRefresh}/>
+                            <RefreshControl refreshing={refreshing} onRefresh={() => this.onRefresh}/>
                         }
                         contentInsetAdjustmentBehavior="automatic"
                         style={styles.scrollView}>
@@ -65,7 +69,7 @@ export default class Home extends React.Component {
                                 <StoryItems onClicked={this._handleStoryItemPress}/>
                             </View>
                             <Separator/>
-                            <PostItems navigation={this.props.navigation}/>
+                            <PostItems navigation={navigation}/>
                         </View>
                     </ScrollView>
                     <Modal
@@ -91,30 +95,4 @@ export default class Home extends React.Component {
         );
     }
 }
-const styles = StyleSheet.create({
-    paddingContainer: {
-        flexDirection: 'column',
-        paddingLeft: 20,
-        paddingRight: 20,
-        paddingTop: 10
-    },
-    marginContainer: {
-        marginTop: 16
-    },
-    scrollView: {},
-    storiesContainer: {
-        flexDirection: 'row'
-    },
-    fragment: {
-        flex: 1,
-        flexDirection: 'column'
-    },
-    storyListContainer: {
-        marginTop: 50
-    },
-    modal: {
-        height: Dimensions.get("window").height,
-        width: Dimensions.get("window").width,
-        flex: 1
-    }
-});
+
