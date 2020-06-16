@@ -1,9 +1,10 @@
 import React from "react";
-import {View, StyleSheet, TouchableOpacity, Dimensions} from "react-native";
+import {View,TouchableOpacity, Dimensions} from "react-native";
 import {Avatar, Text} from "react-native-elements";
 import {colors} from "~/utils/theme";
 import { Right, Button} from "native-base";
 import {generateHiperlinkTextWithTime} from "~/utils/methods";
+import styles from "~/components/favoriteItem/styles";
 
 const FavoriteItem: React.StatelessComponent = (props: any) => {
     const {type, text, time, avatar} = props;
@@ -55,64 +56,8 @@ const FavoriteItem: React.StatelessComponent = (props: any) => {
                 </View>
             </TouchableOpacity>
         </View>
-
-    )
-        ;
+    );
 };
-const styles = StyleSheet.create({
-    commentRow: {
-        lineHeight: 20,
-        fontSize: 14,
-        color: colors.black,
-    },
-    author: {
-        fontWeight: 'bold',
-        color: colors.black
-    },
-    flexStartAligned: {
-        flex: 1,
-        justifyContent: 'flex-start',
-        flexDirection: 'row',
-        alignItems: 'center'
-    },
-    avatarStyle: {
-        position: 'absolute',
-        top: 0,
-        width: 40,
-        height: 40,
-        borderColor: colors.light_gray,
-        borderWidth: 1,
-        alignSelf: 'center',
-        borderRadius: 20,
-    },
-    cardStatsCounter: {
-        flexDirection: 'row',
-        marginLeft: 40,
-        marginTop: 5
-    },
-    hour: {
-        fontSize: 13,
-        fontWeight: 'bold',
-        color: colors.dark_gray,
-    },
-    likes: {
-        fontSize: 13,
-        marginLeft: 10,
-        fontWeight: 'bold',
-        color: colors.dark_gray
-    },
-    commentCounter: {
-        fontSize: 13,
-        marginLeft: 10,
-        fontWeight: 'bold',
-        color: colors.dark_gray
-    },
-    replyContainer: {
-        marginTop: 20,
-        marginBottom: 20,
-        marginLeft: 30,
-        flexDirection: 'row'
-    }
-});
+
 
 export default FavoriteItem;

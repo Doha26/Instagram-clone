@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import { View, Image, Text, StyleSheet, TouchableNativeFeedback, TouchableOpacity } from 'react-native';
+import React  from 'react';
+import {Image, Text,TouchableOpacity } from 'react-native';
 
 import { Card, CardItem, Thumbnail, Body, Left, Right, Button, Icon, Title } from 'native-base';
 
-export default class CardCompnent extends Component {
+export default class CardCompnent extends React.PureComponent<any,any> {
   render() {
-    // @ts-ignore
+
     const { data, onPress } = this.props;
     const { image } = JSON.parse(data.json_metadata);
     return (
@@ -63,10 +63,3 @@ export default class CardCompnent extends Component {
   }
 }
 
-const style = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  }
-});

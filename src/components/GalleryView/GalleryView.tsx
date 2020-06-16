@@ -1,16 +1,14 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {
     View,
     Text,
-    StyleSheet,
     Image, Dimensions
 } from 'react-native'
-// @ts-ignore
 import CameraRollPicker from '~/components/cameraRollPicker/index';
-// @ts-ignore
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
+import styles from "~/components/GalleryView/styles";
 
-export default class GalleryView extends Component {
+export default class GalleryView extends React.PureComponent<any,any> {
 
 
     constructor(props: any) {
@@ -25,7 +23,7 @@ export default class GalleryView extends Component {
     }
 
     render() {
-        // @ts-ignore
+
         const {galleryImagePath, photos} = this.state;
         return (
             <View style={{flex: 1}}>
@@ -43,7 +41,8 @@ export default class GalleryView extends Component {
                             </View>
                         </View>
                     )}
-                    renderFixedHeader={() => <Text
+                    renderFixedHeader={() =>
+                        <Text
                         style={{textAlign: 'center', color: 'white', padding: 15, fontSize: 20}}></Text>}
                     parallaxHeaderHeight={350}
                     stickyHeaderHeight={55}
@@ -67,35 +66,4 @@ export default class GalleryView extends Component {
         )
     }
 }
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#F6AE2D',
-    },
-    content: {
-        marginTop: 15,
-        height: 50,
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexWrap: 'wrap',
-    },
-    text: {
-        fontSize: 16,
-        alignItems: 'center',
-        color: '#fff',
-    },
-    bold: {
-        fontWeight: 'bold',
-    },
-    info: {
-        fontSize: 12,
-    },
-    preview: {
-        flex: 1,
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-    },
-    galleryView: {},
-    imagePreview: {}
-});
+

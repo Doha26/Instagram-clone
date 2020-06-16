@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
   Image,
   StyleSheet,
@@ -6,15 +6,15 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import PropTypes from 'prop-types';
+import styles from "~/components/cameraRollPicker/styles";
 
-class ImageItem extends React.Component {
+class ImageItem extends React.PureComponent<any,any> {
   constructor(props:any) {
     super(props)
   }
 
   componentWillMount() {
     var { width } = Dimensions.get('window');
-    // @ts-ignore
     var { imageMargin, imagesPerRow, containerWidth } = this.props;
 
     if (typeof containerWidth != "undefined") {
@@ -24,7 +24,6 @@ class ImageItem extends React.Component {
   }
 
   render() {
-    // @ts-ignore
     var { item, selected, selectedMarker, imageMargin } = this.props;
 
     var marker = selectedMarker ? selectedMarker :
@@ -51,15 +50,6 @@ class ImageItem extends React.Component {
     this.props.onClick(item);
   }
 }
-
-const styles = StyleSheet.create({
-  marker: {
-    position: 'absolute',
-    top: 5,
-    right: 5,
-    backgroundColor: 'transparent',
-  },
-});
 
 ImageItem.defaultProps = {
   item: {},

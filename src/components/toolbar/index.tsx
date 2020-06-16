@@ -39,13 +39,4 @@ const HeaderToolbar: React.StatelessComponent = (props: any) => {
 
     );
 };
-const styles = StyleSheet.create({
-    logoContainer: {
-        position: 'absolute',
-        flexDirection: 'row',
-        top: 45,
-        left: 20,
-        right: 20
-    }
-});
 export default HeaderToolbar;

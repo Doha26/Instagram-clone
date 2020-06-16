@@ -2,6 +2,7 @@ import React from "react";
 import {View, StyleSheet, TouchableOpacity} from "react-native";
 import {Avatar, Text} from "react-native-elements";
 import {colors} from "~/utils/theme";
+import styles from "~/components/commentItem/styles";
 
 const CommentItem: React.StatelessComponent = (props: any) => {
     return (
@@ -90,58 +91,5 @@ const CommentItem: React.StatelessComponent = (props: any) => {
 
     );
 };
-const styles = StyleSheet.create({
-    commentRow: {
-        lineHeight: 20,
-        fontSize: 14,
-        color: colors.black,
-    },
-    author: {
-        fontWeight: 'bold',
-        color: colors.black
-    },
-    flexStartAligned: {
-        flex: 1,
-        justifyContent: 'flex-start',
-        flexDirection: 'row',
-        alignItems: 'center'
-    },
-    avatarStyle: {
-        position: 'absolute',
-        top: 0,
-        width: 30,
-        height: 30,
-        alignSelf: 'center',
-        borderRadius: 15,
-    },
-    cardStatsCounter: {
-        flexDirection: 'row',
-        marginLeft: 40,
-        marginTop: 5
-    },
-    hour: {
-        fontSize: 13,
-        fontWeight: 'bold',
-        color: colors.dark_gray,
-    },
-    likes: {
-        fontSize: 13,
-        marginLeft: 10,
-        fontWeight: 'bold',
-        color: colors.dark_gray
-    },
-    commentCounter: {
-        fontSize: 13,
-        marginLeft: 10,
-        fontWeight: 'bold',
-        color: colors.dark_gray
-    },
-    replyContainer: {
-        marginTop: 20,
-        marginBottom: 20,
-        marginLeft: 30,
-        flexDirection: 'row'
-    }
-});
 
 export default CommentItem;

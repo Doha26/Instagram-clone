@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {
     Platform,
     StyleSheet,
@@ -8,14 +8,12 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 import CameraRoll from '@react-native-community/cameraroll'
-// @ts-ignore
 import ListView from 'deprecated-react-native-listview';
 import ImageItem from './ImageItem';
 
-class CameraRollPicker extends Component {
+class CameraRollPicker extends React.PureComponent<any, any> {
     constructor(props: any) {
         super(props);
-
         this.state = {
             images: [],
             selected: this.props.selected,
@@ -23,7 +21,7 @@ class CameraRollPicker extends Component {
             initialLoading: true,
             loadingMore: false,
             noMore: false,
-            dataSource: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}),
+            dataSource: new ListView.DataSource({rowHasChanged: (r1: any, r2: any) => r1 !== r2}),
         };
     }
 
@@ -46,7 +44,6 @@ class CameraRollPicker extends Component {
     }
 
     _fetch() {
-        // @ts-ignore
         var {groupTypes, assetType} = this.props;
 
         var fetchParams = {
@@ -86,7 +83,6 @@ class CameraRollPicker extends Component {
                 this._nEveryRow(newState.images, this.props.imagesPerRow)
             );
         }
-
         this.setState(newState);
     }
 
@@ -216,7 +212,7 @@ class CameraRollPicker extends Component {
         callback(selected, image);
     }
 
-    _nEveryRow(data:any, n:any) {
+    _nEveryRow(data: any, n: any) {
         var result = [],
             temp = [];
 
@@ -238,7 +234,7 @@ class CameraRollPicker extends Component {
         return result;
     }
 
-    _arrayObjectIndexOf(array:any, property:any, value:any) {
+    _arrayObjectIndexOf(array: any, property: any, value: any) {
         return array.map((o) => {
             return o[property];
         }).indexOf(value);
@@ -312,7 +308,7 @@ CameraRollPicker.defaultProps = {
     assetType: 'Photos',
     backgroundColor: 'white',
     selected: [],
-    callback: function (selectedImages:any, currentImage:any) {
+    callback: function (selectedImages: any, currentImage: any) {
         console.log(currentImage);
         console.log(selectedImages);
     },
