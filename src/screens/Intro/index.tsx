@@ -32,7 +32,7 @@ export default class Intro extends React.PureComponent<IProps> {
     async componentDidMount() {
         const data = await this.performTimeConsumingTask();
         if (data !== null) {
-            this.props.navigation.navigate('Home');
+            this.props.navigation.navigate('Signin');
         }
     }
 

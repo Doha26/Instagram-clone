@@ -5,6 +5,8 @@ import Intro from "~/screens/Intro";
 import Comments from "~/screens/Comments";
 import PostDetail from "~/screens/Detail";
 import Root from "~/screens/Root";
+import Signin from "~/screens/Member/signin";
+import Signup from "~/screens/Member/signup";
 
 const appStack = createStackNavigator({
     Root: {
@@ -42,9 +44,23 @@ const appStack = createStackNavigator({
             header: null,
             headerBackTitle: null
         })
-    }
+    },
+    Signin: {
+        screen: Signin,
+        navigationOptions: () => ({
+            header: null,
+            headerBackTitle: null
+        })
+    },
+    Signup: {
+        screen: Signup,
+        navigationOptions: () => ({
+            header: null,
+            headerBackTitle: null
+        })
+    },
 }, {
-    initialRouteName: 'Root'
+    initialRouteName: 'Signin'
 });
 
 
