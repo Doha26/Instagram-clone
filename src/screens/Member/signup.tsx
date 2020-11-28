@@ -2,11 +2,8 @@ import React from 'react';
 import {
     View,
     Text,
-    StyleSheet,
-    TextInput, Dimensions, TouchableOpacity, Platform, KeyboardAvoidingView, ScrollView
+    TextInput,TouchableOpacity, Platform, KeyboardAvoidingView, ScrollView
 } from "react-native";
-import {Body, Button, Container, Content, Footer, Header, Left, Right} from "native-base";
-import {colors} from "~/utils/theme";
 import styles from "./styles";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {NavigationScreenProp} from "react-navigation";
