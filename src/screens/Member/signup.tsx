@@ -22,7 +22,7 @@ export default class Signup extends React.PureComponent<IProps, any> {
             password: "",
             username: "",
             name: "",
-            validate: null
+            isValid: false
         }
     }
 
@@ -34,19 +34,11 @@ export default class Signup extends React.PureComponent<IProps, any> {
     validate = () => {
         const {emailOrPhone, password, username, name} = this.state;
 
-        if (emailOrPhone.length > 5 && password.length > 5 && username && name) {
-            this.setState({
-                validate: true
-            })
-        } else {
-            this.setState({
-                validate: false
-            })
-        }
+        this.setState({isValid: emailOrPhone.length > 5 && password.length > 5})
     }
 
     render() {
-        const {validate} = this.state
+        const {isValid} = this.state
         const {navigation} = this.props;
 
         return (
@@ -84,7 +76,7 @@ export default class Signup extends React.PureComponent<IProps, any> {
                             onChangeText={(text) => this.setState({password: text})}
                         />
                     </View>
-                    <View style={styles.loginView} opacity={validate ? 1 : 0.2}>
+                    <View style={styles.loginView} opacity={isValid ? 1 : 0.2}>
                         <Text style={styles.loginText}>Signup</Text>
                     </View>
 

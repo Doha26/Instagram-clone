@@ -22,7 +22,7 @@ export default class Signin extends React.PureComponent<IProps, any> {
             emailOrPhone: "",
             password: "",
             showPassword: false,
-            validate: null
+            isValid: false
         }
     }
 
@@ -34,20 +34,12 @@ export default class Signin extends React.PureComponent<IProps, any> {
     validate = () => {
         const {emailOrPhone, password} = this.state;
 
-        if (emailOrPhone.length > 5 && password.length > 5) {
-            this.setState({
-                validate: true
-            })
-        } else {
-            this.setState({
-                validate: false
-            })
-        }
+        this.setState({isValid: emailOrPhone.length > 5 && password.length > 5})
     }
 
 
     render() {
-        const {validate, showPassword} = this.state
+        const {isValid, showPassword} = this.state
         const {navigation} = this.props;
 
         return (
@@ -81,8 +73,8 @@ export default class Signin extends React.PureComponent<IProps, any> {
                             />
                         </View>
                     </View>
-                    <View style={styles.loginView} opacity={validate ? 1 : 0.2}>
-                        <TouchableOpacity disabled={validate ? false : true}
+                    <View style={styles.loginView} opacity={isValid ? 1 : 0.2}>
+                        <TouchableOpacity disabled={isValid}
                                           onPress={() => navigation.navigate("Home")}>
                             <Text style={styles.loginText}>Login</Text>
                         </TouchableOpacity>
