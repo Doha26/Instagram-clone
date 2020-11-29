@@ -2,6 +2,8 @@ export const colors = {
     darkBlue: "#3897f0",
     fullDarkBlue: "#15568b",
     lightBlue: "#5851DB",
+    moreLightBlue: "#0095f6",
+    navyBlue: "#385185",
     turkois: "#833AB4",
     lightRed: "#E1306C",
     extraLightRed: "#C13584",
@@ -20,7 +22,9 @@ export const colors = {
     darkRed: '#e92f3c',
     black: "#000000",
     blackFilter70: `rgba(0,0,0,0.8)`,
-    blackFilter90: `rgba(0,0,0,0.3)`
+    blackFilter90: `rgba(0,0,0,0.3)`,
+    gray86: "#dbdbdb",
+    gray98: "#fafafa"
 };
 
 
