@@ -5,7 +5,7 @@ import PostsImages from '~/utils/datas/postImages'
 import CardComponent from '~/components/card/CardComponent';
 import StoryItem from "~/components/storyItems/storyItem/index";
 import {colors} from "~/utils/theme";
-import AuxHOC from "~/containers/Aux";
+import AuxHOC from "~/containers/AuxHOC";
 
 
 const {width, height} = Dimensions.get('window');
