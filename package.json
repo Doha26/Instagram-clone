@@ -30,7 +30,7 @@
     "react-native-modalbox": "^2.0.0",
     "react-native-parallax-scroll-view": "^0.21.3",
     "react-native-progress-bar-animated": "^1.0.6",
-    "react-native-reanimated": "^1.3.0",
+    "react-native-reanimated": "^2.10.0",
     "react-native-story": "^0.1.3",
     "react-native-svg": "^9.9.4",
     "react-native-svg-uri": "^1.2.3",
